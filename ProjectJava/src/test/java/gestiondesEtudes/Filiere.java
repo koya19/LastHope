@@ -185,9 +185,31 @@ Scanner sc=new Scanner(System.in);
 	}
 
 	
+	@SuppressWarnings("unused")
+	public void nbrProfParClass() {
+		int i = 0;
+		for (Class c : classFiliere) {
+			for (Prof p : c.profClass) {
+				i++;
+			}
+		}
+		
+		int m = i/(classFiliere.size());
+		System.out.println("La moyenne de professeurs par classe est : " + m);
+	}
 	
-	
-	
+	@SuppressWarnings("unused")
+	public void nbrEtudParClass() {
+		int i = 0;
+		for (Class c : classFiliere) {
+			for (Student s : c.stud) {
+				i++;
+			}
+		}
+		
+		int m = i/(classFiliere.size());
+		System.out.println("La moyenne d'étudiants par classe est : " + m);
+	}
 	
 
 }
