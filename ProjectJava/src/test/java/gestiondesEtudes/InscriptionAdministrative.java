@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import Excel.ExcelUtils; 
 
 public class InscriptionAdministrative {
 	protected Ecole ecole;
