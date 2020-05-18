@@ -1,5 +1,6 @@
 package gestiondesEtudes;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,10 +17,12 @@ public class InscriptionAdministrative {
 	
 	protected static int nbrFemme = 0;
 	protected static int nbrHomme = 0;
+	protected static int i = 0;
 	
 	Scanner sc = new Scanner(System.in);
 	
-	public InscriptionAdministrative(Ecole ecole) throws ParseException {
+	public InscriptionAdministrative(Ecole ecole) throws ParseException, IOException {
+		i++;
 		this.ecole=ecole;
 		setNom();
 		setPrenom();
@@ -39,31 +42,35 @@ public class InscriptionAdministrative {
 		return e.CNE;
 	}
 
-	public void setCNE() {
+	public void setCNE() throws IOException {
 		System.out.println("\nVeuillez entrer votre CNE");
 		e.CNE = sc.next();
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 2, e.CNE);
 	}
 
 	public String getNom() {
 		return e.lastnamePers+ " " + e.firstnamePers;
 	}
 
-	public void setNom() {
+	public void setNom() throws IOException {
 		System.out.println("\nVeuillez entrer votre nom");
 		e.lastnamePers = sc.next();
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 0, e.lastnamePers);
 	
 	}
 	
-	public void setPrenom() {
+	public void setPrenom() throws IOException {
 	
 		System.out.println("\nVeuillez entrer votre prénom");
 		e.firstnamePers = sc.next();
-		
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 1, e.firstnamePers);
 	}
-	public void setPwd() {
+	
+	public void setPwd() throws IOException {
 		System.out.println("\nEntrez votre mot de passe :");
 		//sc.hasNextLine();
 		e.pwd=sc.next();
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 9, e.pwd);
 	}
 	public String getPwd() {
 		return e.pwd;
@@ -77,7 +84,8 @@ public class InscriptionAdministrative {
 		return s;
 	}
 	@SuppressWarnings("deprecation")
-	public void setdN() {
+	public void setdN() throws IOException {
+		String s = "";
 		int i=0;
 		while(i==0) {//year
 			try {
@@ -110,6 +118,8 @@ public class InscriptionAdministrative {
 						dN.setDate(sc.nextInt());
 						sc.nextLine();
 						e.date=dN;
+						s = dN.getDate() + "-" + dN.getMonth() + "-" + dN.getYear();
+						ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 5, s);
 						break;
 					}catch(InputMismatchException er) {//catch 1
 						System.out.println();
@@ -125,10 +135,11 @@ public class InscriptionAdministrative {
 		return e.mail;
 	}
 
-	public void setMail() {
+	public void setMail() throws IOException {
 		
 		System.out.println("\nVeuillez entrer votre mail :");
 		e.mail = sc.next();
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 3, e.mail);
 		
 	}
 
@@ -136,10 +147,11 @@ public class InscriptionAdministrative {
 		return e.telephone;
 	}
 
-	public void setTelephone() {
+	public void setTelephone() throws IOException {
 		
 		System.out.println("\nVeuillez entrer votre telephone :");
 		e.telephone = sc.next();
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 4, e.telephone);
 		
 	}
 
@@ -147,7 +159,7 @@ public class InscriptionAdministrative {
 		return e.formation;
 	}
 
-	public void setFormation() {
+	public void setFormation() throws IOException {
 		int i=0;
 		while(i==0) {
 		System.out.println("\nVotre formation est :\n 1) CPGE\n 2) Autre");
@@ -169,11 +181,13 @@ public class InscriptionAdministrative {
 				System.out.println("\nVeuillez préciser votre filière en CPGE :");
 				String s = sc.next();
 				e.formation = "CPGE filière : " + s;
+				ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 6, e.formation);
 			}
 			else if (i == 2){
 				System.out.println("\nVeuillez préciser votre formation :");
 				String s = sc.next();
 				e.formation = s;
+				ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 6, e.formation);
 			}
 
 	}
@@ -183,16 +197,18 @@ public class InscriptionAdministrative {
 		else return "Paiement non validé";
 	}
 
-	public void setPaiement() {
+	public void setPaiement() throws IOException {
 	
 		System.out.println("\nEst-ce que vous avez effectué le paiement :\n 1) Oui\n 2) Non");
 		int z = sc.nextInt();
 		
 		if (z == 1) {
 			e.paiement = true;
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement validé");
 		}
 		else if (z == 2) {
 			e.paiement = false;
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement non validé");
 		} 
 		else {
 			System.out.println("Ressayer");
@@ -205,16 +221,18 @@ public class InscriptionAdministrative {
 		return e.sexe;
 	}
 
-	public void setSexe() {
+	public void setSexe() throws IOException {
 		int I;
 		System.out.println("\nVous êtes : \n 1) Femme\n 2) Homme");
 		I = sc.nextInt();
 		if (I == 1) {
 			e.sexe = "Femme";
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 7, e.sexe);
 			nbrFemme++;
 		}
 		else if (I == 2) {
 			e.sexe = "Homme";
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 7, e.sexe);
 			nbrHomme++;
 		}
 		else {
@@ -234,7 +252,7 @@ public class InscriptionAdministrative {
 	}
 	
 	
-	public void confirmer() throws ParseException {
+	public void confirmer() throws ParseException, IOException {
 		System.out.println("\nVérifiez les informations que vous avez saisies : \n");
 		récapitulatifInscription();
 		System.out.println("\nVous êtes sur de ces informations ?\n 1) Confirmer\n 2) Il y a une erreur quelque part");

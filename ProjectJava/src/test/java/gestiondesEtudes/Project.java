@@ -1,5 +1,6 @@
 package gestiondesEtudes;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class Project {
 
 	@SuppressWarnings({ "deprecation", "unused" })
-	public static void main(String[] args) throws ParseException   {
+	public static void main(String[] args) throws ParseException, IOException   {
 		Scanner sc= new Scanner(System.in);
 		String Newligne=System.getProperty("line.separator");
 		

@@ -71,9 +71,9 @@ public class ExcelUtils {
 
 	}
 
-	public static void setCellStringValue(int rowNum, int cellNum, String value) throws IOException {
+	public static void setCellStringValue(String path, int rowNum, int cellNum, String value) throws IOException {
 
-		File f = new File("./data/Testu.xlsx");
+		File f = new File(path);
 
 		FileInputStream fis = new FileInputStream(f);
 

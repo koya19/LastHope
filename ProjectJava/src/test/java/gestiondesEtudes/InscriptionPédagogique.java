@@ -1,5 +1,6 @@
 package gestiondesEtudes;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class InscriptionPédagogique {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		public InscriptionPédagogique(Ecole ec) throws ParseException {
+		public InscriptionPédagogique(Ecole ec) throws ParseException, IOException {
 			this.ec = ec;
 			anneePromo=0;
 			while(anneePromo==0) {
@@ -34,7 +35,7 @@ public class InscriptionPédagogique {
 			}
 		}
 		
-		public void firstYear() throws ParseException {
+		public void firstYear() throws ParseException, IOException {
 			if (anneePromo == 1) {
 				InscriptionAdministrative ia = new InscriptionAdministrative(ec);
 				System.out.println("*****************************************************\n");
@@ -122,7 +123,7 @@ public class InscriptionPédagogique {
 						}
 		}
 		
-		public void gestion() throws ParseException {
+		public void gestion() throws ParseException, IOException {
 			switch (anneePromo) {
 			case 1 : firstYear(); break;
 			case 2 : secondYear(); break;
