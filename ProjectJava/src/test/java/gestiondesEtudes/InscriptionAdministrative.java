@@ -70,7 +70,7 @@ public class InscriptionAdministrative {
 		System.out.println("\nEntrez votre mot de passe :");
 		//sc.hasNextLine();
 		e.pwd=sc.next();
-		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 9, e.pwd);
+		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 10, e.pwd);
 	}
 	public String getPwd() {
 		return e.pwd;
@@ -298,7 +298,7 @@ public class InscriptionAdministrative {
 		return e.filière.nomFilière;
 	}
 
-	public void setFilière() {
+	public void setFilière() throws IOException {
 		int i=0;
 		while(i==0){
 		System.out.println("choisir votre filière :");
@@ -311,6 +311,7 @@ public class InscriptionAdministrative {
 			}
 			e.filière=ecole.choisirFiliere(filièrechoisie);
 			f=e.filière;
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 9, f.nomFilière);
 			break;
 		}catch(InputMismatchException e) {
 			System.out.println();
