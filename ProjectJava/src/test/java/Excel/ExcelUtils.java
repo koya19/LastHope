@@ -51,7 +51,7 @@ public class ExcelUtils {
 			if(!f.exists())
 			{
 				f.createNewFile();
-				System.out.println("File doesn't exist, so created!");
+				System.out.println("File doesn't exist, so create it !");
 			}  
 			fis=new FileInputStream(ExcelPath);
 			wb=new XSSFWorkbook(fis);
@@ -67,7 +67,7 @@ public class ExcelUtils {
 	public static void getRowCount() {
 
 		int rowCount = sheet.getPhysicalNumberOfRows();
-		System.out.println("N° of rows is " + rowCount);		
+		System.out.println("NÂ° of rows is " + rowCount);		
 
 	}
 
