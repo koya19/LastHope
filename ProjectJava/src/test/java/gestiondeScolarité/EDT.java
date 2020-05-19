@@ -1,4 +1,4 @@
-package gestiondeScolaritÃ©;
+package gestiondeScolarité;
 
 import java.text.ParseException;
 

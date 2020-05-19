@@ -323,6 +323,7 @@ public class Class  implements Comparable<Class> {
 							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
 							break;
 						}
+						
 						else if (disciplinechoisie==2) {
 							Class.i++;
 							e.addprof("TP",prof);
