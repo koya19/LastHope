@@ -16,6 +16,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import Excel.ExcelUtils;
+
 
 public class Ecole implements Inscription{
 	protected  String nomEcole;
@@ -35,18 +37,39 @@ public class Ecole implements Inscription{
 	public Map<Personne,String> pwdEcole =new HashMap<>();
 	Scanner sc=new Scanner(System.in);
 	String Newligne=System.getProperty("line.separator");
+	
+	static int i = 0;
+	static int j = 0;
+	static int v = 0;
+	
 
-	public Ecole() {
-		System.out.println("-Entrez le nom de l'école :");
-		nomEcole=sc.nextLine();
-		System.out.println("\n-Entrez l'abréviation de l'école :");
-		abrEcole=sc.nextLine();
-		System.out.println("\n-Entrez le fondateur de l'école :");
-		fondateur=sc.nextLine();
-		System.out.println("\n-Entrez le type de l'école :");
-		type=sc.nextLine();
-		System.out.println("\n-Entrez l'adresse de l'école :");
-		adressEcole=sc.nextLine();
+	public Ecole() throws IOException {
+		
+		if(i != 0) {
+			loadSchool();
+		}
+		else {
+			i++;
+			System.out.println("-Entrez le nom de l'école :");
+			nomEcole=sc.nextLine();
+			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 0, nomEcole);
+			System.out.println("\n-Entrez l'abréviation de l'école :");
+			abrEcole=sc.nextLine();
+			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 1, abrEcole);
+			System.out.println("\n-Entrez le fondateur de l'école :");
+			fondateur=sc.nextLine();
+			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 2, fondateur);
+			System.out.println("\n-Entrez le type de l'école :");
+			type=sc.nextLine();
+			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 3, type);
+			System.out.println("\n-Entrez l'adresse de l'école :");
+			adressEcole=sc.nextLine();
+			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 4, adressEcole);
+		}
+	}
+	
+	public void loadSchool() {//
+		
 	}
 
 	public Ecole(String nomEcole, String abrEcole,String fondateur,String type, String adressEcole) {
@@ -58,7 +81,9 @@ public class Ecole implements Inscription{
 		this.type=type;
 
 	}
-	public void inscription()   {//insc Admin
+	
+	public void inscription() throws IOException   {//insc Admin
+		
 		System.out.println("\n  ->Entez votre nom :");
 		String lastnamePers=sc.next();
 		System.out.println("\n  ->Entez votre prénom :");
@@ -130,8 +155,12 @@ public class Ecole implements Inscription{
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les administrateurs de l'"+this.abrEcole+" :\n\n");
 			for (administrateur a: this.adminEcole) {
-
 				bw.write(a.lastnamePers+"  "+a.firstnamePers+"      "+a.cniPers+"\n");
+				v++;
+				ExcelUtils.setCellStringValue("./data/ListeAdmin.xlsx",v, 0, a.lastnamePers);
+				ExcelUtils.setCellStringValue("./data/ListeAdmin.xlsx",v, 1, a.firstnamePers);
+				ExcelUtils.setCellStringValue("./data/ListeAdmin.xlsx",v, 2, a.cniPers);
+				ExcelUtils.setCellStringValue("./data/ListeAdmin.xlsx",v, 3, a.pwd);
 			}
 		}
 		catch(FileNotFoundException e) {
@@ -147,8 +176,13 @@ public class Ecole implements Inscription{
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les responsables de l'"+this.abrEcole+" :\n\n");
 			for (Respo  a: this.respoEcole) {
-
 				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.filière+"      "+a.pwd+"\n");
+				j++;
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 0, a.lastnamePers);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 1, a.firstnamePers);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 2, a.cniPers);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 3, a.filière.nomFilière);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 4, a.pwd);
 			}
 		}
 		catch(FileNotFoundException e) {
@@ -158,7 +192,7 @@ public class Ecole implements Inscription{
 			e.printStackTrace(); 
 		}
 	}
-	public void addclass() {
+	public void addclass() throws IOException {
 		int a=1;
 		while (a==1) {
 			System.out.println("\n--Veuillez ajouter une classe :");
@@ -192,6 +226,9 @@ public class Ecole implements Inscription{
 							this.classEcole.add(c);
 							f.classFiliere.add(c);
 							promo.classPromo.add(c);
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 0, c.toString());
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFilière());
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 2, c.promo.toString());
 						}
 						break;
 					}

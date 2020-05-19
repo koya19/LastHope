@@ -14,6 +14,8 @@ import gestiondeScolarité.EDT;
 import java.util.*;
 import java.util.HashSet;
 
+import Excel.ExcelUtils;
+
 public class Class  implements Comparable<Class> {
 	protected Ecole ecole;
 	protected Promo promo;
@@ -26,6 +28,8 @@ public class Class  implements Comparable<Class> {
 	SimpleDateFormat s= new SimpleDateFormat("dd MM yyyy");
 	Scanner sc=new Scanner(System.in);
 	String Newligne=System.getProperty("line.separator");
+	
+	static int i = 0;
 	//-----------------------------------------------------------------------------------------	
 	public Class() {
 	}
@@ -110,6 +114,7 @@ public class Class  implements Comparable<Class> {
 		}
 
 	}
+	
 	
 	public void affichermoduleClass() {
 
@@ -282,7 +287,7 @@ public class Class  implements Comparable<Class> {
 		}
 
 	}
-	public void addprof(Prof prof) {
+	public void addprof(Prof prof) throws IOException {
 		String Newligne=System.getProperty("line.separator");
 		Scanner sc=new Scanner(System.in);
 		System.out.println("\nChoisissez un module :");
@@ -307,19 +312,51 @@ public class Class  implements Comparable<Class> {
 					sc.nextLine();
 					if(i==elementchoisi) {
 						if (disciplinechoisie==1) {
+							Class.i++;
 							e.addprof("CM",prof);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "CM");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
 							break;
 						}
 						else if (disciplinechoisie==2) {
+							Class.i++;
 							e.addprof("TP",prof);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "TP");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
 							break;
 						}
 						else if (disciplinechoisie==3) {
+							Class.i++;
 							e.addprof("TD",prof);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "TD");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
 							break;
 						}
 						else if (disciplinechoisie==4) {
+							Class.i++;
 							e.addprof("AP",prof);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "AP");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
 							break;
 						}
 						break;
