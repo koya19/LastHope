@@ -28,7 +28,7 @@ public class InscriptionAdministrative {
 		setPrenom();
 		setdN();
 		setCNE();
-		setFilière();
+		setFiliÃ¨re();
 		setMail();
 		setTelephone();
 		setFormation();
@@ -61,7 +61,7 @@ public class InscriptionAdministrative {
 	
 	public void setPrenom() throws IOException {
 	
-		System.out.println("\nVeuillez entrer votre prénom");
+		System.out.println("\nVeuillez entrer votre prÃ©nom");
 		e.firstnamePers = sc.next();
 		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 1, e.firstnamePers);
 	}
@@ -89,7 +89,7 @@ public class InscriptionAdministrative {
 		int i=0;
 		while(i==0) {//year
 			try {
-		System.out.println("\nVeuillez entrer votre annee de naissance :");
+		System.out.println("\nVeuillez entrer votre annÃ©e de naissance :");
 		dN.setYear(sc.nextInt());
 		sc.nextLine();
 		i=1;
@@ -178,13 +178,13 @@ public class InscriptionAdministrative {
 		}
 			
 			if (i == 1) {
-				System.out.println("\nVeuillez préciser votre filière en CPGE :");
+				System.out.println("\nVeuillez prÃ©ciser votre filiÃ¨re en CPGE :");
 				String s = sc.next();
-				e.formation = "CPGE filière : " + s;
+				e.formation = "CPGE filiÃ¨re : " + s;
 				ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 6, e.formation);
 			}
 			else if (i == 2){
-				System.out.println("\nVeuillez préciser votre formation :");
+				System.out.println("\nVeuillez prÃ©ciser votre formation :");
 				String s = sc.next();
 				e.formation = s;
 				ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 6, e.formation);
@@ -193,22 +193,22 @@ public class InscriptionAdministrative {
 	}
 
 	public String isPaiement() {
-		if (e.paiement == true) return "Paiement validé";
-		else return "Paiement non validé";
+		if (e.paiement == true) return "Paiement validÃ©";
+		else return "Paiement non validÃ©";
 	}
 
 	public void setPaiement() throws IOException {
 	
-		System.out.println("\nEst-ce que vous avez effectué le paiement :\n 1) Oui\n 2) Non");
+		System.out.println("\nEst-ce que vous avez effectuÃ© le paiement :\n 1) Oui\n 2) Non");
 		int z = sc.nextInt();
 		
 		if (z == 1) {
 			e.paiement = true;
-			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement validé");
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement validÃ©");
 		}
 		else if (z == 2) {
 			e.paiement = false;
-			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement non validé");
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 8, "Paiement non validÃ©");
 		} 
 		else {
 			System.out.println("Ressayer");
@@ -223,7 +223,7 @@ public class InscriptionAdministrative {
 
 	public void setSexe() throws IOException {
 		int I;
-		System.out.println("\nVous êtes : \n 1) Femme\n 2) Homme");
+		System.out.println("\nVous Ãªtes : \n 1) Femme\n 2) Homme");
 		I = sc.nextInt();
 		if (I == 1) {
 			e.sexe = "Femme";
@@ -236,7 +236,7 @@ public class InscriptionAdministrative {
 			nbrHomme++;
 		}
 		else {
-			System.out.println("Ressayez\n");
+			System.out.println("RÃ©essayez\n");
 			setSexe();
 		}
 	}
@@ -244,28 +244,28 @@ public class InscriptionAdministrative {
 	@Override
 	public String toString() {
 		return "Nom complet : " + e.lastnamePers + " " + e.firstnamePers + "\nSexe : " + e.sexe + "\nDate de naissance : " +s.format(e.date)
-				+ "\nTéléphone : " +e.telephone + "\nAdresse électronique : " + e.mail + "\nFormation initiale : " + e.formation + "\nEtat de  paiement : " + isPaiement() ;
+				+ "\nTÃ©lÃ©phone : " +e.telephone + "\nAdresse Ã©lectronique : " + e.mail + "\nFormation initiale : " + e.formation + "\nEtat de  paiement : " + isPaiement() ;
 	}
 	
-	public void récapitulatifInscription() {
+	public void rÃ©capitulatifInscription() {
 		System.out.println(toString());
 	}
 	
 	
 	public void confirmer() throws ParseException, IOException {
-		System.out.println("\nVérifiez les informations que vous avez saisies : \n");
-		récapitulatifInscription();
-		System.out.println("\nVous êtes sur de ces informations ?\n 1) Confirmer\n 2) Il y a une erreur quelque part");
+		System.out.println("\nVÃ©rifiez les informations que vous avez saisies : \n");
+		rÃ©capitulatifInscription();
+		System.out.println("\nVous Ãªtes sÃ»r(e) de ces informations ?\n 1) Confirmer\n 2) Il y a une erreur quelque part");
 		int i = sc.nextInt();
 		//sc.nextLine();
 		if (i == 1) {
-			System.out.println("\nInsciption enregistée avec succès\nBienvenu ");
+			System.out.println("\nInsciption enregistÃ©e avec succÃ¨s\nBienvenue ");
 			e.afficherStudent();
 			//quitter();
 		}
 		else if (i == 2) {
 			sc.nextLine();
-			System.out.println("\nVous voulez modifier : \n 1) Votre nom\n 2) Votre prenom\n 3) Votre date de naissance\n 4) Votre sexe\n 5) Votre CNE\n 6) Votre numéro de téléphone\n 7) Votre adresse électronique\n 8) Votre formation\n 9)Changer votre mot de passe 10) L'état du paiement");
+			System.out.println("\nVous voulez modifier : \n 1) Votre nom\n 2) Votre prÃ©nom\n 3) Votre date de naissance\n 4) Votre sexe\n 5) Votre CNE\n 6) Votre numÃ©ro de tÃ©lÃ©phone\n 7) Votre adresse Ã©lectronique\n 8) Votre formation\n 9)Changer votre mot de passe 10) L'Ã©tat du paiement");
 			int j = sc.nextInt();
 			switch (j) {
 			case 1 : setNom(); confirmer(); break;
@@ -281,7 +281,7 @@ public class InscriptionAdministrative {
 			}
 		}
 		else {
-			System.out.println("Ressayer");
+			System.out.println("RÃ©essayer");
 			confirmer();
 		}
 	}
@@ -294,24 +294,24 @@ public class InscriptionAdministrative {
 		sc.close();
 	}
 
-	public String getFilière() {
-		return e.filière.nomFilière;
+	public String getFiliÃ¨re() {
+		return e.filiÃ¨re.nomFiliÃ¨re;
 	}
 
-	public void setFilière() throws IOException {
+	public void setFiliÃ¨re() throws IOException {
 		int i=0;
 		while(i==0){
-		System.out.println("choisir votre filière :");
+		System.out.println("choisir votre filiÃ¨re :");
 		ecole.affichefiliereEcole();
 		try {
-			int filièrechoisie=sc.nextInt();
+			int filiÃ¨rechoisie=sc.nextInt();
 			sc.nextLine();
-			if(0>filièrechoisie|| filièrechoisie>ecole.filiereEcole.size()) {
+			if(0>filiÃ¨rechoisie|| filiÃ¨rechoisie>ecole.filiereEcole.size()) {
 				throw new InputMismatchException("Ce choix est invalide.");
 			}
-			e.filière=ecole.choisirFiliere(filièrechoisie);
-			f=e.filière;
-			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 9, f.nomFilière);
+			e.filiÃ¨re=ecole.choisirFiliere(filiÃ¨rechoisie);
+			f=e.filiÃ¨re;
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 9, f.nomFiliÃ¨re);
 			break;
 		}catch(InputMismatchException e) {
 			System.out.println();
@@ -333,7 +333,7 @@ public class InscriptionAdministrative {
 		if(nbrFemme+nbrHomme != 0) {
 			float pg = nbrHomme*100/(nbrFemme+nbrHomme);
 			float pf =nbrFemme*100/(nbrFemme+nbrHomme);
-			System.out.println("Pourcentage des garçons parmi les nouveaux inscrits est : " + pg + "%");
+			System.out.println("Pourcentage des garÃ§ons parmi les nouveaux inscrits est : " + pg + "%");
 			System.out.println("Pourcentage des filles parmi les nouveaux inscrits est : " + pf + "%");
 		} else {
 			System.out.println("Pas d'inscription pour le moment.");
