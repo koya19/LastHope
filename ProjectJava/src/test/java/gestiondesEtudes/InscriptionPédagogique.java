@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InscriptionPÈdagogique {
+public class InscriptionP√©dagogique {
 		protected int anneePromo;
 		//protected Promotion p;
 		protected int filierechoisie;
@@ -16,11 +16,11 @@ public class InscriptionPÈdagogique {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		public InscriptionPÈdagogique(Ecole ec) throws ParseException, IOException {
+		public InscriptionP√©dagogique(Ecole ec) throws ParseException, IOException {
 			this.ec = ec;
 			anneePromo=0;
 			while(anneePromo==0) {
-			System.out.println("Vous vous inscrivez au titre de la :\n 1) PremiËre annÈe\n 2) DeuxiËme annÈe\n 3) TroisiËme annÈe");
+			System.out.println("Vous vous inscrivez au titre de la :\n 1) Premi√®re ann√©e\n 2) Deuxi√®me ann√©e\n 3) Troisi√®me ann√©e");
 			try {
 			anneePromo = sc.nextInt();
 			sc.nextLine();
@@ -49,7 +49,7 @@ public class InscriptionPÈdagogique {
 		
 		
 		public void secondYear() {
-			System.out.println("\nChoisissez une filiËre :");
+			System.out.println("\nChoisissez une fili√®re :");
 			ec.affichefiliereEcole();
 			filierechoisie=sc.nextInt();
 			f=ec.choisirFiliere(filierechoisie);
@@ -64,7 +64,7 @@ public class InscriptionPÈdagogique {
 					setEt(s);
 					if(s.Decision==null) {
 						
-						System.err.println("Pas de decision pour le moment. Veuillez attendre la dÈcision du conseil");
+						System.err.println("Pas de d√©cision pour le moment. Veuillez attendre la d√©cision du conseil");
 						break;
 					}
 					
@@ -72,7 +72,7 @@ public class InscriptionPÈdagogique {
 					if (s.getDecision().equalsIgnoreCase("Passage")) {
 						s.setAnneePromo(2);	
 						c.stud.remove(s);
-							System.out.println("FÈlicitations, vos notes et discipline vous ont permis de rÈussir. \nBienvenu dans cette nouvelle annÈe !");
+							System.out.println("F√©licitations, vos notes et discipline vous ont permis de r√©ussir. \nBienvenue dans cette nouvelle ann√©e !");
 							System.out.println("\n----------------------\n");
 							
 							/*System.out.println("choisir la nouvelle promotion");
@@ -84,7 +84,7 @@ public class InscriptionPÈdagogique {
 							setEt(s);
 					}
 					else {
-							System.out.println("DÈsolÈ, vous allez redoubler. Bon courage !");
+							System.out.println("D√©sol√©, vous allez redoubler. Bon courage !");
 					}
 					break;
 					}
@@ -98,7 +98,7 @@ public class InscriptionPÈdagogique {
 		
 		
 		public void thirdYear() {
-			System.out.println("\nChoisissez votre filiËre :");
+			System.out.println("\nChoisissez votre fili√®re :");
 			ec.affichefiliereEcole();
 			filierechoisie=sc.nextInt();
 			f=ec.choisirFiliere(filierechoisie);
@@ -109,7 +109,7 @@ public class InscriptionPÈdagogique {
 						if (ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie).getDecision().equalsIgnoreCase("Passage")) {
 							ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie).setAnneePromo(3);	
 							ec.choisirFiliere(filierechoisie).choisirClassFilere().stud.remove(ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie));
-								System.out.println("FÈlicitations, vos notes et discipline vous ont permis de rÈussir. \nBienvenu dans cette nouvelle annÈe !");
+								System.out.println("F√©licitations, vos notes et discipline vous ont permis de r√©ussir. \nBienvenue dans cette nouvelle ann√©e !");
 								System.out.println("\n----------------------\n");
 								
 								System.out.println("choisir la nouvelle promotion");
@@ -119,7 +119,7 @@ public class InscriptionPÈdagogique {
 								
 						}
 						else {
-								System.out.println("DÈsolÈ, vous allez redoubler. Bon courage !");
+								System.out.println("D√©sol√©, vous allez redoubler. Bon courage !");
 						}
 		}
 		
@@ -128,7 +128,7 @@ public class InscriptionPÈdagogique {
 			case 1 : firstYear(); break;
 			case 2 : secondYear(); break;
 			case 3 : thirdYear(); break;
-			default : System.out.println("RÈessayer"); anneePromo = sc.nextInt(); gestion(); break;
+			default : System.out.println("R√©essayer"); anneePromo = sc.nextInt(); gestion(); break;
 			}
 		}
 
