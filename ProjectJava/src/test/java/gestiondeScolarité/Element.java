@@ -1,4 +1,4 @@
-package gestiondeScolaritÈ;
+package gestiondeScolarit√©;
 
 import gestiondesEtudes.Student;
 import gestiondesEtudes.Prof;
@@ -56,11 +56,11 @@ public class Element {
 		 
 		 
 		 for (Map.Entry mapentry : repartheureElement.entrySet()) {
-				System.out.println("\n----CrÈation de la discipline " +mapentry.getKey()+" de l'ÈlÈment "+this.toString()+" :\n");
-				System.out.println("\n--DÈtÈrminer l'enseignant de la discipline :\n");
-				System.out.println("    ->Entez le nom :");
+				System.out.println("\n----Cr√©ation de la discipline " +mapentry.getKey()+" de l'√©l√©ment "+this.toString()+" :\n");
+				System.out.println("\n--D√©terminer l'enseignant de la discipline :\n");
+				System.out.println("    ->Entrez le nom :");
 				String lastnamePers=sc.next();
-				System.out.println("\n    ->Entez le prÈnom :");
+				System.out.println("\n    ->Entrez le pr√©nom :");
 				String firstnamePers=sc.next();
 				System.out.println("\n    ->Entrez CNI :");
 				String cniPers=sc.next();
@@ -108,7 +108,7 @@ public class Element {
 			
 		}
 		if(v==0) {
-			System.out.println("\nL'Ètudiant "+ student.toString() +" n'appartient pas ‡ " + module.cl.toString());
+			System.out.println("\nL'√©tudiant "+ student.toString() +" n'appartient pas √† " + module.cl.toString());
 		}
 		}
 	
@@ -117,7 +117,7 @@ public class Element {
 		if(this.noteElement.isEmpty()) {
 			System.err.println("\nPas de notes pour le moment\n");
 		}
-		System.out.println("\nLes notes de l'ÈlÈment " + this.nomElement+" du "+this.module);
+		System.out.println("\nLes notes de l'√©l√©ment " + this.nomElement+" du "+this.module);
 		for (Map.Entry mapentry : noteElement.entrySet()) {
 	           System.out.println(mapentry.getKey()+ "   " + mapentry.getValue());
 	        }
@@ -156,7 +156,7 @@ public class Element {
 	@SuppressWarnings("rawtypes")
 	public void afficherhours() {
 	
-		System.out.println("\nLa rÈpartition de l'ÈlÈment "+ this.nomElement +" :");
+		System.out.println("\nLa r√©partition de l'√©l√©ment "+ this.nomElement +" :");
 		for (Map.Entry mapentry : repartheureElement.entrySet()) {
 			System.out.println(mapentry.getKey()+"  :  " + mapentry.getValue()+" h");
 		}
@@ -165,14 +165,14 @@ public class Element {
 	
 	public void addprof(String rep,Prof prof) {
 		enseignantElement.put(rep, prof);
-		System.out.println("\nVous avez dÈsignÈ " +prof.toString()+" comme prof de l'ÈlÈment "+prof.getElement()+" dans le "+prof.getModule());
+		System.out.println("\nVous avez d√©sign√© " +prof.toString()+" comme prof de l'√©l√©ment "+prof.getElement()+" dans le "+prof.getModule());
 			
 	}
 	
 	
 	@SuppressWarnings("rawtypes")
 	public void afficheprof() {
-		System.out.println("Les profs de cet ÈlÈment sont : ");
+		System.out.println("Les profs de cet √©l√©ment sont : ");
 		
 		for (Map.Entry mapentry : enseignantElement.entrySet()) {
 			System.out.println(mapentry.getKey()+"  :  " + mapentry.getValue());
@@ -181,12 +181,12 @@ public class Element {
 	public void definirSalle() {
 		int a=0;
 		while(a==0) {
-			System.out.println("\n    ->Entrer le numÈro de salle :");
+			System.out.println("\n    ->Entrer le num√©ro de salle :");
 			try {
 			int n=sc.nextInt();
 			sc.nextLine();
 			if (this.module.cl.getEcole().Salle.containsKey(n)) {
-				System.out.println("Salle OccupÈe");
+				System.out.println("Salle Occup√©e");
 				a=0;
 				
 			}
