@@ -101,7 +101,6 @@ public class Module {
 		
 		}
 		
-		tauxDeValidation();
 			 
 	}
 	public void affichenoteModuletud(Student s) {
