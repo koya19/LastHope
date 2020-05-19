@@ -137,7 +137,7 @@ public class InscriptionAdministrative {
 
 	public void setMail() throws IOException {
 		
-		System.out.println("\nVeuillez entrer votre mail :");
+		System.out.println("\nVeuillez entrer votre adresse mail :");
 		e.mail = sc.next();
 		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 3, e.mail);
 		
@@ -149,7 +149,7 @@ public class InscriptionAdministrative {
 
 	public void setTelephone() throws IOException {
 		
-		System.out.println("\nVeuillez entrer votre telephone :");
+		System.out.println("\nVeuillez entrer votre numéro de téléphone :");
 		e.telephone = sc.next();
 		ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",i, 4, e.telephone);
 		
