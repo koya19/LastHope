@@ -1,4 +1,4 @@
-package gestiondeScolarité;
+package gestiondeScolaritÃ©;
 
 import java.text.ParseException;
 
@@ -50,12 +50,12 @@ public class EDT {
 		jour[4]="ven.";
 		jour[5]="sam.";
 		
-		System.out.println("\nVous avez créé un EDT");
+		System.out.println("\nVous avez crÃ©Ã© un EDT");
 	}
 	 public void afficheEDT() {
 		 SimpleDateFormat sdf= new SimpleDateFormat("EEEE dd MMMM yyyy");
 		 System.out.println("*********************************************************************************************");
-		 System.out.println("EDT de la semaine du "+ sdf.format(begin)+" à "+ sdf.format(end)+"\n");
+		 System.out.println("EDT de la semaine du "+ sdf.format(begin)+" au "+ sdf.format(end)+"\n");
 		 
 		 System.out.println("                            9h00min-12h45min           14h15min-18h00min");
 		 System.out.println("");
@@ -63,7 +63,7 @@ public class EDT {
 			 System.out.println(jour[i]+"                     "+ matin[i].getNomElement()+"                                 "+apresmidi[i].getNomElement());
 			
 			 System.out.println("                        "+matin[i].enseignantElement.get(discipline)+"                                 "+apresmidi[i].enseignantElement.get(discipline));
-			 System.out.println("                        Salle n° "+matin[i].salle+"                            "+"Salle n° "+apresmidi[i].salle);
+			 System.out.println("                        Salle nÂ° "+matin[i].salle+"                            "+"Salle nÂ° "+apresmidi[i].salle);
 			 System.out.println("");
 		 }
 			 System.out.println("*********************************************************************************************"); 
@@ -89,7 +89,7 @@ public class EDT {
 		 SimpleDateFormat sdf= new SimpleDateFormat("EEEE dd MMMM yyyy");
 		 
 		 System.out.println("*********************************************************************************************");
-		 System.out.println("EDT de la semaine du "+ sdf.format(begin)+" à "+ sdf.format(end)+"\n");
+		 System.out.println("EDT de la semaine du "+ sdf.format(begin)+" au "+ sdf.format(end)+"\n");
 		 
 		 System.out.println("                            9h00min-12h45min           14h15min-18h00min");
 		 System.out.println("");
