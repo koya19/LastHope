@@ -1,6 +1,6 @@
 package gestiondesEtudes;
-import gestiondeScolaritÈ.Element;
-import gestiondeScolaritÈ.Module;
+import gestiondeScolarit√©.Element;
+import gestiondeScolarit√©.Module;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -50,19 +50,19 @@ public class Ecole implements Inscription{
 		}
 		else {
 			i++;
-			System.out.println("-Entrez le nom de l'Ècole :");
+			System.out.println("-Entrez le nom de l'√©cole :");
 			nomEcole=sc.nextLine();
 			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 0, nomEcole);
-			System.out.println("\n-Entrez l'abrÈviation de l'Ècole :");
+			System.out.println("\n-Entrez l'abr√©viation de l'√©cole :");
 			abrEcole=sc.nextLine();
 			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 1, abrEcole);
-			System.out.println("\n-Entrez le fondateur de l'Ècole :");
+			System.out.println("\n-Entrez le fondateur de l'√©cole :");
 			fondateur=sc.nextLine();
 			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 2, fondateur);
-			System.out.println("\n-Entrez le type de l'Ècole :");
+			System.out.println("\n-Entrez le type de l'√©cole :");
 			type=sc.nextLine();
 			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 3, type);
-			System.out.println("\n-Entrez l'adresse de l'Ècole :");
+			System.out.println("\n-Entrez l'adresse de l'√©cole :");
 			adressEcole=sc.nextLine();
 			ExcelUtils.setCellStringValue("./data/Ecole.xlsx",i, 4, adressEcole);
 		}
@@ -86,7 +86,7 @@ public class Ecole implements Inscription{
 		
 		System.out.println("\n  ->Entez votre nom :");
 		String lastnamePers=sc.next();
-		System.out.println("\n  ->Entez votre prÈnom :");
+		System.out.println("\n  ->Entez votre pr√©nom :");
 		String firstnamePers=sc.next();
 		System.out.println("\n  ->Entrez votre CNI :");
 		String cniPers=sc.next();
@@ -104,18 +104,18 @@ public class Ecole implements Inscription{
 		else return false;
 	}
 
-	public void addfiliËre() {
+	public void addfili√®re() {
 		int a=1;
 
 		while(a==1) {
-			System.out.println("\n--Veuillez ajouter une filiËre :");
-			System.out.println("\n  ->Entrez le nom de la nouvelle filiËre :");
+			System.out.println("\n--Veuillez ajouter une fili√®re :");
+			System.out.println("\n  ->Entrez le nom de la nouvelle fili√®re :");
 			String nomFiliere=sc.next();
 			Filiere f=new Filiere (nomFiliere,this);
-			System.out.println("\n--DÈterminer le chef de filiËre");
-			System.out.println("\n  ->Entez son nom :");
+			System.out.println("\n--D√©terminer le chef de fili√®re");
+			System.out.println("\n  ->Entrez son nom :");
 			String lastnamePers=sc.next();
-			System.out.println("\n  ->Entez son prÈnom :");
+			System.out.println("\n  ->Entrez son pr√©nom :");
 			String firstnamePers=sc.next();
 			System.out.println("\n  ->Entrez son CNI :");
 			String cniPers=sc.next();
@@ -127,7 +127,7 @@ public class Ecole implements Inscription{
 
 			a=0;
 			while(a==0) {
-				System.out.println("\n--Voulez vous ajouter une autre filiËre? \n 1) Oui\n 2) Non");
+				System.out.println("\n--Voulez-vous ajouter une autre fili√®re? \n 1) Oui\n 2) Non");
 
 				try {
 					a=sc.nextInt();	
@@ -176,12 +176,12 @@ public class Ecole implements Inscription{
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les responsables de l'"+this.abrEcole+" :\n\n");
 			for (Respo  a: this.respoEcole) {
-				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.filiËre+"      "+a.pwd+"\n");
+				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.fili√®re+"      "+a.pwd+"\n");
 				j++;
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 0, a.lastnamePers);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 1, a.firstnamePers);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 2, a.cniPers);
-				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 3, a.filiËre.nomFiliËre);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 3, a.fili√®re.nomFili√®re);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 4, a.pwd);
 			}
 		}
@@ -196,7 +196,7 @@ public class Ecole implements Inscription{
 		int a=1;
 		while (a==1) {
 			System.out.println("\n--Veuillez ajouter une classe :");
-			System.out.println("\n  ->Choisissez une filiËre :");
+			System.out.println("\n  ->Choisissez une fili√®re :");
 			this.affichefiliereEcole();
 			try {
 				a= sc.nextInt();
@@ -214,7 +214,7 @@ public class Ecole implements Inscription{
 						for(Promo promo:f.promoFiliere) {
 
 							if (promo.nPromo==p) {
-								System.out.println("Cette classe est dÈja ajoutÈe");
+								System.out.println("Cette classe est d√©j√† ajout√©e");
 								i=0;
 								break;
 							}
@@ -227,14 +227,14 @@ public class Ecole implements Inscription{
 							f.classFiliere.add(c);
 							promo.classPromo.add(c);
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 0, c.toString());
-							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFiliËre());
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFili√®re());
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 2, c.promo.toString());
 						}
 						break;
 					}
 					else i++;
 				}
-				System.out.println("\n--Voulez vous ajouter une autre classe ? \n  1) Oui\n  2) Non");
+				System.out.println("\n--Voulez-vous ajouter une autre classe ? \n  1) Oui\n  2) Non");
 				a=sc.nextInt();	
 				sc.nextLine();
 				if (a!=1 && a!=2) {
@@ -253,7 +253,7 @@ public class Ecole implements Inscription{
 	public void  affichestudEcole() {
 		@SuppressWarnings("rawtypes")
 		Iterator iterator = studEcole.iterator();
-		System.out.println("Les Ètudiants de l'"  + this.nomEcole + " :");
+		System.out.println("Les √©tudiants de l'"  + this.nomEcole + " :");
 
 		while (iterator.hasNext()){
 			System.out.println("-"+iterator.next());
@@ -263,17 +263,17 @@ public class Ecole implements Inscription{
 
 	@Override
 	public String toString() {
-		return nomEcole + " ( " + abrEcole + " ) est une Ècole d'"+ type + " fondÈe par "+ fondateur ;
+		return nomEcole + " ( " + abrEcole + " ) est une √©cole d'"+ type + " fond√©e par "+ fondateur ;
 	}
 	public void affichefiliereEcole() {
 		@SuppressWarnings("rawtypes")
 		
 		Iterator iterator = filiereEcole.iterator();
 		if(this.filiereEcole.isEmpty()) {
-			System.err.println("Pas de filËre pour la moment");
+			System.err.println("Pas de fil√®re pour la moment");
 		}
 		else {
-		System.out.println("Les filiËres de l'"  + this.nomEcole);
+		System.out.println("Les fili√®res de l'"  + this.nomEcole);
 		int i=1;
 		while (iterator.hasNext()){
 			System.out.println(i+"- "+iterator.next());
@@ -307,12 +307,12 @@ public class Ecole implements Inscription{
 	}
 	public void afficheclassFiliere() {
 		if(this.filiereEcole.isEmpty()) {
-			System.err.println("Pas de filiËre pour le moment");
+			System.err.println("Pas de fili√®re pour le moment");
 		}
 		else {
 		int a=0;
 		while(a==0) {
-			System.out.println("\nChoisir la filiËre:");
+			System.out.println("\nChoisir la fili√®re:");
 			this.affichefiliereEcole();
 			try {
 				int filierechoisie=sc.nextInt();
@@ -375,11 +375,11 @@ public class Ecole implements Inscription{
 		int a=0;
 		try {
 		if (this.filiereEcole.isEmpty()) {
-			throw new NullPointerException("Pas de filiËre pour le moment"); 
+			throw new NullPointerException("Pas de fili√®re pour le moment"); 
 		}
 		else {
 		while (a==0) {
-			System.out.println("\n--Choisissez une filiËre :");
+			System.out.println("\n--Choisissez une fili√®re :");
 			this.affichefiliereEcole();
 
 			try {
@@ -426,7 +426,7 @@ public class Ecole implements Inscription{
 	public void afficherEDT() {
 		int a=0;
 		while (a==0) {
-			System.out.println("\n--Choisissez une filiËre :");
+			System.out.println("\n--Choisissez une fili√®re :");
 			this.affichefiliereEcole();
 
 			try {
@@ -470,7 +470,7 @@ public class Ecole implements Inscription{
 	public void removeClass() {
 		int a=0;
 		if(this.classEcole.isEmpty()) {
-			System.out.println("Pas de classe dans cette Ècole");
+			System.out.println("Pas de classe dans cette √©cole");
 		}
 		else {
 			System.out.println("\n--Choisissez une classe :");
@@ -520,15 +520,15 @@ public class Ecole implements Inscription{
 			}
 		}
 	}
-	public void removeFiliËre() {
+	public void removeFili√®re() {
 		int a=0;
 		while(a==0) {
 			if(this.filiereEcole.isEmpty()) {
-				System.out.println("Pas de filËre dans cette Ècole");
+				System.out.println("Pas de fil√®re dans cette √©cole");
 				break;
 			}
 			else{
-				System.out.println("\n--Choisir la filiËre :");
+				System.out.println("\n--Choisir la fili√®re :");
 				this.affichefiliereEcole();
 
 				try {
@@ -589,7 +589,7 @@ public class Ecole implements Inscription{
 
 		int i=1;
 		if (this.adminEcole.isEmpty()) {
-			System.out.println("Pas d'administrateur ‡ retirer");
+			System.out.println("Pas d'administrateur √† retirer");
 		}
 		else {
 			System.out.println("\n--Choisir l'Admin");
@@ -631,12 +631,12 @@ public class Ecole implements Inscription{
 	public void modResp() {
 		int a=0;
 		if(this.filiereEcole.isEmpty()) {
-			System.out.println("Pas de filiËre dans cette Ècole");
+			System.out.println("Pas de fili√®re dans cette √©cole");
 		}
 		else {
 			while (a==0) {
 
-				System.out.println("\n--Choisissez une filiËre :");
+				System.out.println("\n--Choisissez une fili√®re :");
 				this.affichefiliereEcole();
 
 				try {
@@ -650,10 +650,10 @@ public class Ecole implements Inscription{
 						if(i==filierechoisie) {
 							this.respoEcole.remove(f.r);
 							this.pwdEcole.remove(f.r);
-							System.out.println("\n--DÈterminer le chef de filiËre");
-							System.out.println("\n  ->Entez son nom :");
+							System.out.println("\n--D√©terminer le chef de fili√®re");
+							System.out.println("\n  ->Entrez son nom :");
 							String lastnamePers=sc.next();
-							System.out.println("\n  ->Entez son prÈnom :");
+							System.out.println("\n  ->Entrez son pr√©nom :");
 							String firstnamePers=sc.next();
 							System.out.println("  ->Entrez son CNI :");
 							String cniPers=sc.next();
@@ -694,7 +694,7 @@ public class Ecole implements Inscription{
 		int a=0;
 		Respo respo =new Respo("","");
 		while(a==0) {
-			System.out.println("\n  ->Choisissez une filiËre : ");
+			System.out.println("\n  ->Choisissez une fili√®re : ");
 			this.affichefiliereEcole();
 			try {
 				int filiere=sc.nextInt();
@@ -745,12 +745,12 @@ public class Ecole implements Inscription{
 						}
 						a=1;
 						while(a==1) {
-							System.out.println("\nEntrez le nom de l'ÈlÈment");
+							System.out.println("\nEntrez le nom de l'√©l√©ment");
 							String nomElement=sc.nextLine();
 							cl.addElement(modulechoisi,nomElement);
 							a=5;
 							while (a==5) {
-								System.out.println(" 1) Ajouter un ÈlÈment"+Newligne+" 2) Changer le module"+Newligne+" 3) Changer la classe"+Newligne+" 4) Retour"+Newligne);
+								System.out.println(" 1) Ajouter un √©l√©ment"+Newligne+" 2) Changer le module"+Newligne+" 3) Changer la classe"+Newligne+" 4) Retour"+Newligne);
 								try {
 									a=sc.nextInt();
 									sc.nextLine();
@@ -796,7 +796,7 @@ public class Ecole implements Inscription{
 		Module module=new Module(nomModule,cl);
 		int r1=1;
 		while (r1==1) {
-			System.out.println(" 1) Ajoutez un ÈlÈment\n 2) Retour");
+			System.out.println(" 1) Ajoutez un √©l√©ment\n 2) Retour");
 			try {
 				r1=sc.nextInt();
 				sc.nextLine();
@@ -822,7 +822,7 @@ public class Ecole implements Inscription{
 			}
 			else
 			{
-				System.out.println("\nEntrer le nom du nouveau ÈlÈment");
+				System.out.println("\nEntrer le nom du nouvel √©l√©ment");
 				String nomElement=sc.nextLine();
 				Element element =new Element(nomElement,module);
 				module.setHeureModule();
@@ -836,7 +836,7 @@ public class Ecole implements Inscription{
 	public void removeModule(Filiere filiere) {
 		Class cl= filiere.choisirClassFilere();
 		if(cl.moduleClass.isEmpty()) {
-			System.err.println("Pas de module dans la class");
+			System.err.println("Pas de module dans la classe");
 		}
 		else {
 			int a=0;
@@ -914,8 +914,8 @@ public class Ecole implements Inscription{
 		return false;
 	}
 	public void afficherEcole() {
-		System.out.println(this.nomEcole + " ( "+this.abrEcole+" ) est une Ècole d'" +this.type+" fondÈe par "+ this.fondateur);
-		System.out.println("L'adresse de l'Ècole est : " +this.adressEcole);
+		System.out.println(this.nomEcole + " ( "+this.abrEcole+" ) est une √©cole d'" +this.type+" fond√©e par "+ this.fondateur);
+		System.out.println("L'adresse de l'√©cole est : " +this.adressEcole);
 	}
 
 	public String getAbrEcole() {
