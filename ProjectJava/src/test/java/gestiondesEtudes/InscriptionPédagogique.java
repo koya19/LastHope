@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InscriptionPÃ©dagogique {
+public class InscriptionPédagogique {
 		protected int anneePromo;
 		//protected Promotion p;
 		protected int filierechoisie;
@@ -16,7 +16,7 @@ public class InscriptionPÃ©dagogique {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		public InscriptionPÃ©dagogique(Ecole ec) throws ParseException, IOException {
+		public InscriptionPédagogique(Ecole ec) throws ParseException, IOException {
 			this.ec = ec;
 			anneePromo=0;
 			while(anneePromo==0) {

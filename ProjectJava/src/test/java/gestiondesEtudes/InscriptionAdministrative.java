@@ -28,7 +28,7 @@ public class InscriptionAdministrative {
 		setPrenom();
 		setdN();
 		setCNE();
-		setFiliÃ¨re();
+		setFilière();
 		setMail();
 		setTelephone();
 		setFormation();
@@ -247,14 +247,14 @@ public class InscriptionAdministrative {
 				+ "\nTÃ©lÃ©phone : " +e.telephone + "\nAdresse Ã©lectronique : " + e.mail + "\nFormation initiale : " + e.formation + "\nEtat de  paiement : " + isPaiement() ;
 	}
 	
-	public void rÃ©capitulatifInscription() {
+	public void récapitulatifInscription() {
 		System.out.println(toString());
 	}
 	
 	
 	public void confirmer() throws ParseException, IOException {
 		System.out.println("\nVÃ©rifiez les informations que vous avez saisies : \n");
-		rÃ©capitulatifInscription();
+		récapitulatifInscription();
 		System.out.println("\nVous Ãªtes sÃ»r(e) de ces informations ?\n 1) Confirmer\n 2) Il y a une erreur quelque part");
 		int i = sc.nextInt();
 		//sc.nextLine();
@@ -294,24 +294,24 @@ public class InscriptionAdministrative {
 		sc.close();
 	}
 
-	public String getFiliÃ¨re() {
-		return e.filiÃ¨re.nomFiliÃ¨re;
+	public String getFilière() {
+		return e.filière.nomFilière;
 	}
 
-	public void setFiliÃ¨re() throws IOException {
+	public void setFilière() throws IOException {
 		int i=0;
 		while(i==0){
 		System.out.println("choisir votre filiÃ¨re :");
 		ecole.affichefiliereEcole();
 		try {
-			int filiÃ¨rechoisie=sc.nextInt();
+			int filièrechoisie=sc.nextInt();
 			sc.nextLine();
-			if(0>filiÃ¨rechoisie|| filiÃ¨rechoisie>ecole.filiereEcole.size()) {
+			if(0>filièrechoisie|| filièrechoisie>ecole.filiereEcole.size()) {
 				throw new InputMismatchException("Ce choix est invalide.");
 			}
-			e.filiÃ¨re=ecole.choisirFiliere(filiÃ¨rechoisie);
-			f=e.filiÃ¨re;
-			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 9, f.nomFiliÃ¨re);
+			e.filière=ecole.choisirFiliere(filièrechoisie);
+			f=e.filière;
+			ExcelUtils.setCellStringValue("./data/ListeStudentInscription.xlsx",InscriptionAdministrative.i, 9, f.nomFilière);
 			break;
 		}catch(InputMismatchException e) {
 			System.out.println();

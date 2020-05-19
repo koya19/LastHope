@@ -17,17 +17,17 @@ public class Project {
 		System.out.println("**************************       Mr.directeur         ****************************\n\n" );
 		
 		Ecole ecole=new Ecole();
-		System.out.println("\n--Veuillez entrer vos donnÃ©es personnelles");
+		System.out.println("\n--Veuillez entrer vos données personnelles");
 		ecole.inscription();
-		ecole.addfiliÃ¨re();
+		ecole.addfilière();
 		ecole.addclass();
-		System.out.println("\nLa phase de crÃ©ation de l'Ã©cole est terminÃ©e avec succÃ¨s\n ");
+		System.out.println("\nLa phase de création de l'école est terminée avec succès\n ");
 		System.out.println("**************************BIENVENUE DANS LE SYSTEM "+ecole.abrEcole+"****************************\n\n" );
 		int id=0;
 		while (id==0) {//connection while(id==0)
 			int e=0;
 			while(e==0) {
-				System.out.println("--Se connecter comme Ã©tant :\n  1) Administrateur\n  2) Responsable de filiÃ¨re\n  3) Enseignant\n  4) Etudiant\n  5) Visiteur");
+				System.out.println("--Se connecter comme étant :\n  1) Administrateur\n  2) Responsable de filière\n  3) Enseignant\n  4) Etudiant\n  5) Visiteur");
 		 		try {//try 1
 					id=sc.nextInt();	
 					if (id!=1 && id!=2 && id!=3 && id!=4 && id!=5) {
@@ -49,23 +49,23 @@ public class Project {
 			if(id==1) {//connection admin
 				System.out.println("\n ->Entrez votre Nom ");
 				String nom =sc.nextLine();
-				System.out.println("\n ->Entrez votre  PrÃ©nom");
+				System.out.println("\n ->Entrez votre  Prénom");
 				String prenom =sc.nextLine();
 				System.out.println("\n ->Entrez un mot de passe");
 		 		String pwd =sc.nextLine();
 				administrateur admin=new administrateur(nom,prenom,pwd,ecole);
 				if (admin.exist(ecole.adminEcole)==false) {//check l'existence de l'admin
-					System.out.println("\nVous n'Ãªtes pas membre de l'administration\n");
+					System.out.println("\nVous n'êtes pas membre de l'administration\n");
 					id=0;
 				}//check l'existence du admin
 				else if (admin.verificationPWD()==false) {//check pwd
 					System.out.println("Mot de passe est incorrecte !");
 					id=0;
 				}//check pwd
-				else {// passwd et l'existence verifiÃ© admin
+				else {// passwd et l'existence verifiés admin
 					int ad1=0;
 					while (ad1==0) {//menu d'administrateur
-						System.out.println("--Choisissez votre prochaine action:\n\n    1) Gestion des Ã©tudes\n    2) Les statistiques et rapports\n    3) Retour\n");
+						System.out.println("--Choisissez votre prochaine action:\n\n    1) Gestion des études\n    2) Les statistiques et rapports\n    3) Retour\n");
 						try {//try 1
 							ad1=sc.nextInt();	
 							if (ad1!=1 && ad1!=2 && ad1!=3 ) {
@@ -80,8 +80,8 @@ public class Project {
 						}//catch 1
 						if(ad1==1) {//gestion des etudes
 							int ad2=0;
-							while (ad2==0) {//menu gestion des Ã©tudes
-								System.out.println("--Choisissez votre prochaine action:\n    1) Ajouter un Administrateur\n    2) Ajouter une filiÃ¨re\n    3) Ajouter une classe\n    4) Retirer une filiÃ¨re\n    5) Retirer une classe\n    6) Retirer un administrateur\n    7) Changer le responsable d'une filiÃ¨re\n    8) Retour\n");
+							while (ad2==0) {//menu gestion des études
+								System.out.println("--Choisissez votre prochaine action:\n    1) Ajouter un Administrateur\n    2) Ajouter une filière\n    3) Ajouter une classe\n    4) Retirer une filière\n    5) Retirer une classe\n    6) Retirer un administrateur\n    7) Changer le responsable d'une filière\n    8) Retour\n");
 								try {//try 2
 									ad2=sc.nextInt();	
 									if (ad2!=1 && ad2!=2 && ad2!=3 && ad2!=4 && ad2!=5 && ad2!=6 && ad2!=7 && ad2!=8) {
@@ -98,18 +98,18 @@ public class Project {
 									ecole.inscription();
 									ad2=0;
 								}//ajouter un admin
-								if(ad2==2) {//ajouter une filiÃ¨re
-									ecole.addfiliÃ¨re();
+								if(ad2==2) {//ajouter une filière
+									ecole.addfilière();
 									ad2=0;
-								}//ajouter une filiÃ¨re
+								}//ajouter une filière
 								if(ad2==3) {//ajout d'une class
 									ecole.addclass();
 									ad2=0;
 								}//ajout d'une class
-								if(ad2==4) {//retirer une filiÃ¨re
-									ecole.removeFiliÃ¨re();
+								if(ad2==4) {//retirer une filière
+									ecole.removeFilière();
 									ad2=0;
-								}//retirer une filiÃ¨re
+								}//retirer une filière
 								if(ad2==5) {//retirer une classe
 									ecole.removeClass();
 									ad2=0;
@@ -133,7 +133,7 @@ public class Project {
 						if(ad1==2) {//les statistique et rapports
 							int ad2=0;
 							while (ad2==0) {//menu les statistique et rapports
-								System.out.println("--Choisissez votre prochaine action:\n\n    1) Statistiques et rapport sur les Ã©tudes\n    2) Statistiques et rapport de scolaritÃ©\n    3) Statistiques et rapport sur les examens\n    4) Retour\n");
+								System.out.println("--Choisissez votre prochaine action:\n\n    1) Statistiques et rapport sur les études\n    2) Statistiques et rapport de scolarité\n    3) Statistiques et rapport sur les examens\n    4) Retour\n");
 								try {//try 2
 									ad2=sc.nextInt();	
 									if (ad2!=1 && ad2!=2 && ad2!=3 && ad2!=4) {
@@ -150,7 +150,7 @@ public class Project {
 								if (ad2==1) {//stat sur les etudes
 									ad2=6;
 									while(ad2==6){//menu statist d'etudes
-										System.out.println("Choisissez votre prochaine action:\n    1) Afficher les filiÃ¨res de l'Ã©cole\n    2) Afficher les classes d'une filiÃ¨re\n    3) Afficher les heures des modules pour chaque filiÃ¨re\n    4) Afficher les emplois du temps\n    5) Retour\n");
+										System.out.println("Choisissez votre prochaine action:\n    1) Afficher les filières de l'école\n    2) Afficher les classes d'une filière\n    3) Afficher les heures des modules pour chaque filière\n    4) Afficher les emplois du temps\n    5) Retour\n");
 										try {//try 2
 											ad2=sc.nextInt();	
 											if (ad2!=1 && ad2!=2 && ad2!=3 && ad2!=4 && ad2!=5) {
@@ -164,10 +164,10 @@ public class Project {
 											ad2=6;
 											
 										}//catch2
-										if(ad2==1) {//aficher les filliÃ¨re
+										if(ad2==1) {//aficher les fillière
 											ecole.affichefiliereEcole();
 											ad2=6;
-										}//aficher les filliÃ¨re
+										}//aficher les fillière
 										if(ad2==2) {//afficher les classes
 											ecole.afficheclassFiliere();
 											ad2=6;
@@ -185,9 +185,9 @@ public class Project {
 										}
 									}//menu statist d'etudes
 								}//stat sur les etudes
-								if(ad2==2) {//stat sur la scolaritÃ©
+								if(ad2==2) {//stat sur la scolarité
 									ad2=0;
-								}//stat sur la scolaritÃ©
+								}//stat sur la scolarité
 								if(ad2==3) {//stat sur les examen
 									ad2=0;
 								}//stat sur les examen
@@ -203,18 +203,18 @@ public class Project {
 					
 					}//menu d'administrateur
 					
-				}// passwd et l'existence verifiÃ© admin
+				}// passwd et l'existence verifié admin
 			
 				
 				
 				
 				
 			}////connection admin
-	////---------------------------------------------Responsable de filiÃ¨re----------------------------------------
-			if(id==2) {//connection responsable de filiÃ¨re
+	////---------------------------------------------Responsable de filière----------------------------------------
+			if(id==2) {//connection responsable de filière
 				System.out.println("\n ->Entrez votre Nom ");
 				String nom =sc.nextLine();
-				System.out.println("\n ->Entrez votre PrÃ©nom");
+				System.out.println("\n ->Entrez votre Prénom");
 				String prenom =sc.nextLine();
 				System.out.println("\n ->Entrez votre mot de passe");
 		 		String pwd =sc.nextLine();
@@ -226,17 +226,17 @@ public class Project {
 					
 					Respo resp =ecole.connectionRespo(nom, prenom, pwd);
 					if(resp.exist()==false) {//existences du respo connecte
-						System.out.println("Vous n'Ãªtes pas enregistrÃ© comme responsable.");
+						System.out.println("Vous n'êtes pas enregistré comme responsable.");
 						id=0;
 					}//existences du respo connecte
 					else if(resp.verificationPWD()==false) {//verifi pwd
 						System.out.println("Mot de passe est incorrecte");
 						id=0;
 					}//verifi pwd
-					else {//pwd o existence verifiÃ©
+					else {//pwd o existence verifié
 						int r1=0;
 						while (r1==0) {//menu respo
-							System.out.println("--Choisissez votre prochaine action:\n\n    1) Gestion des Ã©tudes\n    2) Gestion de scolaritÃ©\n    3) Retour\n");
+							System.out.println("--Choisissez votre prochaine action:\n\n    1) Gestion des études\n    2) Gestion de scolarité\n    3) Retour\n");
 							try {//try 1
 								r1=sc.nextInt();	
 								if (r1!=1 && r1!=2 && r1!=3 ) {
@@ -253,7 +253,7 @@ public class Project {
 							if(r1==1) {//gestion des etudes
 								r1=0;
 								while (r1==0) {//MENU GESTION DES ETUDES
-									System.out.println("\nChoisissez votre prochaine action:\n\n    1) Ajouter un module pour une classe\n    2) Ajouter un Ã©lÃ©ment\n    3) Retirer un module\n    4) Retirer un Ã©lÃ©ment\n    5) Gestion d'emploi du temps\n    6) Afficher les donnÃ©es de la filiÃ¨re\n    7) Retour\n");
+									System.out.println("\nChoisissez votre prochaine action:\n\n    1) Ajouter un module pour une classe\n    2) Ajouter un élément\n    3) Retirer un module\n    4) Retirer un élément\n    5) Gestion d'emploi du temps\n    6) Afficher les données de la filière\n    7) Retour\n");
 									try {//try 1
 										r1=sc.nextInt();	
 										if (r1!=1 && r1!=2 && r1!=3 && r1!=4&& r1!=5 && r1!=6 && r1!=7 && r1!=8) {
@@ -269,34 +269,34 @@ public class Project {
 									}//catch 1
 									
 									if (r1==1) {//Ajout des modules pour une classe
-										ecole.addModule(resp.filiÃ¨re);
+										ecole.addModule(resp.filière);
 										
 										r1=0;
 									}//Ajout des modules pour une classe
 									
 									if(r1==2) {//2-ajout d'element
-										ecole.addElement(resp.filiÃ¨re);
+										ecole.addElement(resp.filière);
 										r1=0;
 									}//2-ajout d'element
 									
 									if(r1==3) {//Retirer un module
-										ecole.removeModule(resp.filiÃ¨re);
+										ecole.removeModule(resp.filière);
 										r1=0;
 									}//Retirer un module
-									if(r1==4) {//Retirer un Ã©lÃ©ment
-										ecole. removeElement(resp.filiÃ¨re);
+									if(r1==4) {//Retirer un élément
+										ecole. removeElement(resp.filière);
 										r1=0;
-									}//Retirer un Ã©lÃ©ment
+									}//Retirer un élément
 									
 									if(r1==5) {//Gestion d'emploi
 										
 										
-										Class cl= resp.filiÃ¨re.choisirClassFilere();
+										Class cl= resp.filière.choisirClassFilere();
 										
 										SimpleDateFormat s= new SimpleDateFormat("dd MM yyyy");
 										int r2=0;
 										while(r2==0) {
-											System.out.println("\nChoisissez votre prochaine action : \n    1) CrÃ©er un nouvel EDT\n    2) Modifier un EDT\n    3) Retour");
+											System.out.println("\nChoisissez votre prochaine action : \n    1) Créer un nouvel EDT\n    2) Modifier un EDT\n    3) Retour");
 											try {//try 1
 												r2=sc.nextInt();	
 												sc.nextLine();
@@ -319,7 +319,7 @@ public class Project {
 														break;
 													}
 													else {
-												System.out.println("\nVeuillez entrer la date de dÃ©but de l'emploi sous forme 'dd mm yyyy'  (La date devrait correspondre Ã  un Lundi) \n");
+												System.out.println("\nVeuillez entrer la date de début de l'emploi sous forme 'dd mm yyyy'  (La date devrait correspondre à un Lundi) \n");
 												try {
 													
 												String date=sc.nextLine();
@@ -337,7 +337,7 @@ public class Project {
 													
 												}
 												else {
-													System.err.println("Veuillez saisir une date de dÃ©but de semaine\n");
+													System.err.println("Veuillez saisir une date de début de semaine\n");
 													r2=1;
 												}
 												}
@@ -354,7 +354,7 @@ public class Project {
 											
 											 if (r2==2) {//modifier l'edt
 												if(cl.emploi.isEmpty()) {
-													System.err.println("Pas d'emploi Ã  modifier");
+													System.err.println("Pas d'emploi à  modifier");
 													r2=0;
 												}
 												else {
@@ -376,10 +376,10 @@ public class Project {
 										
 									}//Gestion d'emploi
 									
-									if(r1==6) {//Afficher les donnÃ©es
+									if(r1==6) {//Afficher les données
 										int r2=0;
 										while(r2==0) {//menu d'affichage
-											System.out.println("\nChoisissez votre prochaine action :\n    1) Afficher les classes de la filiÃ¨re"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    2) Afficher les Ã©tudiants de la filiÃ¨re"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    3) Afficher les profs de la filiÃ¨re"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    4) Afficher les emplois d'une classe"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    5) Afficher les modules d'une classe"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    6) Afficher les Ã©lÃ©ments d'un module"+resp.filiÃ¨re.nomFiliÃ¨re+"\n    7) Afficher le PV de dÃ©libÃ©ration\n    8) Retour\n");										
+											System.out.println("\nChoisissez votre prochaine action :\n    1) Afficher les classes de la filière"+resp.filière.nomFilière+"\n    2) Afficher les étudiants de la filière"+resp.filière.nomFilière+"\n    3) Afficher les profs de la filière"+resp.filière.nomFilière+"\n    4) Afficher les emplois d'une classe"+resp.filière.nomFilière+"\n    5) Afficher les modules d'une classe "+resp.filière.nomFilière+"\n    6) Afficher les éléments d'un module "+resp.filière.nomFilière+"\n    7) Afficher le PV de délibération\n    8) Retour\n");										
 											try {//try 1
 											r2=sc.nextInt();
 											if (r2!=1 && r2!=2 && r2!=3 && r2!=4&& r2!=5 && r2!=6 && r2!=7 && r2!=8) {
@@ -397,18 +397,18 @@ public class Project {
 								
 											if (r2==1) {//AFFICHAGE classe
 												
-												resp.filiÃ¨re.afficheClassFiliere();
+												resp.filière.afficheClassFiliere();
 												r2=0;
 											}//AFFICHAGE classe
 											if(r2==2) {//affichage etudiant
 												
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												cl.affichestudClass();
 												r2=0;
 											}//affichage etudiant
 											if (r2==3) {//afficher les profs
 												
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												
 												cl.afficherProf();
 												r2=0;
@@ -416,26 +416,26 @@ public class Project {
 											}//afficher les profs
 											if(r2==4) {// affichage les emploi
 												
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												cl.afficheEdtClass();
 												r2=0;
 											}//affichage les emploi
 											if (r2==5) {// affichage module
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												cl.affichermoduleClass();
 												r2=0;
 											}// affichage module
 											if(r2==6) {//affichage element 
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												cl.afficherElementClass();
 												r2=0;
 												
 											}//affichage element 
 											if (r2==7) {//PV
-												Class cl= resp.filiÃ¨re.choisirClassFilere();
+												Class cl= resp.filière.choisirClassFilere();
 												cl.affichermoduleClass();
-												PvDeDÃ©libÃ©ration p =new PvDeDÃ©libÃ©ration(cl)	;
-												p.gÃ©nÃ©rerPV();
+												PvDeDélibération p =new PvDeDélibération(cl)	;
+												p.générerPV();
 											}//rPV
 											if (r2==8) {//retour
 												r1=0	;
@@ -444,7 +444,7 @@ public class Project {
 										
 										}//menu d'affichage
 										
-									}//Afficher les donnÃ©es
+									}//Afficher les données
 								
 									if(r1==7) {//retour 1
 										r1=0;
@@ -454,9 +454,9 @@ public class Project {
 						
 							}//gestion des etudes
 						
-							if(r1==2) {//gestion de scolaritÃ©  
+							if(r1==2) {//gestion de scolarité 
 								int r2=0;
-								while(r2==0) {//MENU GESTION SCOLARIT2
+								while(r2==0) {//MENU GESTION SCOLARITE
 									System.out.println("\nChoisissez votre prochaine action :\n    1) Gestion des notes\n    2) Gestion des absences\n       3) Retour\n");
 									try {
 									r2=sc.nextInt();
@@ -492,15 +492,15 @@ public class Project {
 											
 										}//catch 1		
 											if(r3==1) {//entrer les notes 
-												Class cl=resp.filiÃ¨re.choisirClassFilere();
+												Class cl=resp.filière.choisirClassFilere();
 												cl.addnoteStud();
 											}//entrer les notes
 											if(r3==2) {//modifier les notes
-												Class cl=resp.filiÃ¨re.choisirClassFilere();
+												Class cl=resp.filière.choisirClassFilere();
 												cl.ModnoteStud();
 											}//modifier les notes
 											if(r3==3) {//afficher les notes
-												Class cl=resp.filiÃ¨re.choisirClassFilere();
+												Class cl=resp.filière.choisirClassFilere();
 												cl.affichernoteModuleClass();
 											}//afficher les notes
 											if(r3==4) {//retour
@@ -526,12 +526,12 @@ public class Project {
 											
 										}//catch 1	
 											if(r2==1) {//ajout de l'abs
-												Class cl = resp.filiÃ¨re.choisirClassFilere();
+												Class cl = resp.filière.choisirClassFilere();
 												cl.addAbs();
 												r2=1;
 											}//ajout de l'abs
 											if(r2==2) {//justif
-												Class cl = resp.filiÃ¨re.choisirClassFilere();
+												Class cl = resp.filière.choisirClassFilere();
 												cl.justifieAbs();
 												r2=1;
 											}//justif
@@ -547,26 +547,26 @@ public class Project {
 									}//retour
 									
 								}//MENU GESTION SCOLARIT2
-							}//gestion de scolaritÃ©
+							}//gestion de scolarité
 							
 							if(r1==3) {//retour1
 								id=0;
 							}//retour1
 							
 						}//menu respo
-					}//pwd ou existence verifiÃ©
+					}//pwd ou existence verifié
 					
 				}//le SET n'est pas vide
 				
 		
-			}//connection responsable de filiÃ¨re
+			}//connection responsable de filière
 			
 //-----------------------------------------------------Prof---------------------------------------------
 			
 			if(id==3) {//connection enseignant
 				System.out.println("\n ->Entrez votre Nom ");
 				String nom =sc.nextLine();
-				System.out.println("\n ->Entrez votre PrÃ©nom");
+				System.out.println("\n ->Entrez votre Prénom");
 				String prenom =sc.nextLine();
 				System.out.println("\n ->Entrez votre mot de passe");
 		 		String pwd =sc.nextLine();
@@ -577,20 +577,20 @@ public class Project {
 				else {//le SET n'est p vide
 					Prof prof =new Prof (nom, prenom,pwd);
 					if(prof.exist(ecole.profEcole)==false) {//existences du prof connecte
-						System.out.println("Vous n'Ãªtes pas inscrit comme un enseignant.");
+						System.out.println("Vous n'êtes pas inscrit comme un enseignant.");
 						id=0;
 					}//existences du prof connecte
 					else if(ecole.profverificationPWD(prof)==false) {//verifi pwd
 						System.out.println("\nMot de passe est incorrecte");
 						id=0;
 					}//verifi pwd
-					else {//pwd o existence verifiÃ©
-						for(Prof p:ecole.profEcole) {//affectation des donnÃ©es
-							if(p.equals(prof)) {//affectation des donnÃ©es
+					else {//pwd o existence verifié
+						for(Prof p:ecole.profEcole) {//affectation des données
+							if(p.equals(prof)) {//affectation des données
 								prof=p;
 								break;
-							}//affectation des donnÃ©es
-						}//affectation des donnÃ©es
+							}//affectation des données
+						}//affectation des données
 							int r1=0;
 							while (r1==0) {//menu Prof
 								System.out.println("\n--Choisissez votre prochaine action :\n\n    1) Afficher les notes \n    2) Afficher l'emploi du temps\n    3) Retour\n");
@@ -620,14 +620,14 @@ public class Project {
 							}//menu Prof
 						
 						
-					}//pwd o existence verifiÃ©
+					}//pwd o existence verifié
 				}
 			}//connection enseignant
 //---------------------------------------------STUD------------------------------------
 			if(id==4) {//connection etudiant
 				System.out.println("\n ->Entrez votre Nom ");
 				String nom =sc.nextLine();
-				System.out.println("\n ->Entrez votre PrÃ©nom");
+				System.out.println("\n ->Entrez votre Prénom");
 				String prenom =sc.nextLine();
 				System.out.println("\n ->Entrez votre mot de passe");
 		 		String pwd =sc.nextLine();
@@ -635,7 +635,7 @@ public class Project {
 				Student s= new Student(nom, prenom,pwd);
 				while(s1==0) {//menu
 				if(ecole.studEcole.isEmpty()) {//ecole vide
-					System.out.println("Aucun Ã©tudiant dans cette Ã©cole\n Voulez-vous vous inscrire ?\n 1) Oui\n 2) Non\n");
+					System.out.println("Aucun étudiant dans cette école\n Voulez-vous vous inscrire ?\n 1) Oui\n 2) Non\n");
 					try {
 					s1=sc.nextInt();
 					
@@ -654,7 +654,7 @@ public class Project {
 				}//ecole vide
 				else if(s.exist(ecole.studEcole)==false) {//n'existe pas
 						
-						System.out.println("Vous n'Ãªtes pas un Ã©tudiant dans cette Ã©cole :\n 1) S'inscrire\n 2) Quitter");
+						System.out.println("Vous n'êtes pas un étudiant dans cette école :\n 1) S'inscrire\n 2) Quitter");
 						try {
 						
 						if(s1!=1 && s1!=2) {
@@ -672,12 +672,12 @@ public class Project {
 					}//catch 1
 						}//n'existe pas
 				else {//etudiant existant
-					for(Student st:ecole.studEcole) {//affectation des filiÃ¨re
-						if(st.equals(s)) {//affectation de filiÃ¨re
-							s.filiÃ¨re=st.filiÃ¨re;
+					for(Student st:ecole.studEcole) {//affectation des filière
+						if(st.equals(s)) {//affectation de filière
+							s.filière=st.filière;
 							break;
-						}//affectation de filiÃ¨re
-					}//affectation de filiÃ¨re
+						}//affectation de filière
+					}//affectation de filière
 					
 					 if (s.verificationPWD()==false) {   //pwd incorrecte
 					System.out.println("Mot de passe incorrecte");
@@ -687,14 +687,14 @@ public class Project {
 				else {//verification des pwd et existence
 					
 				
-					for(Student st:ecole.studEcole) {//affectation des donnÃ©es
-						if(st.equals(s)) {//affectation des donnÃ©es
+					for(Student st:ecole.studEcole) {//affectation des données
+						if(st.equals(s)) {//affectation des données
 							s=st;
 							break;
-						}//affectation des donnÃ©es
-					}//affectation des donnÃ©es
+						}//affectation des données
+					}//affectation des données
 					
-					System.out.println("\nChoisissez votre prochaine action :\n    1) S'inscrire pour l'annÃ©e suivante\n    2) Afficher les notes\n    3) Afficher l'EDT\n    4) Retour\n" );
+					System.out.println("\nChoisissez votre prochaine action :\n    1) S'inscrire pour l'année suivante\n    2) Afficher les notes\n    3) Afficher l'EDT\n    4) Retour\n" );
 					try {
 						s1=sc.nextInt();
 						if(s1!=1 && s1!=2 && s1!=3 && s1!=4) {
@@ -709,14 +709,14 @@ public class Project {
 				}//verification des pwd et existence
 				}//etudiant existant
 				if (s1==1) {//inscription
-					InscriptionPÃ©dagogique ip=new InscriptionPÃ©dagogique(ecole);
+					InscriptionPédagogique ip=new InscriptionPédagogique(ecole);
 					s=ip.getEt();
 					
 					s1=0;
 					
 				}//inscription
 				if(s1==2) {//afficher les notes
-					s.c.affichernoteStud( s);
+					s.c.affichernoteStud(s);
 					s1=0;
 				}//afficher les notes
 				if(s1==3) {//afficher les EDT

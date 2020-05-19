@@ -1,6 +1,6 @@
 package gestiondesEtudes;
-import gestiondeScolaritÃ©.Element;
-import gestiondeScolaritÃ©.Module;
+import gestiondeScolarité.Element;
+import gestiondeScolarité.Module;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -104,7 +104,7 @@ public class Ecole implements Inscription{
 		else return false;
 	}
 
-	public void addfiliÃ¨re() {
+	public void addfilière() {
 		int a=1;
 
 		while(a==1) {
@@ -176,12 +176,12 @@ public class Ecole implements Inscription{
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les responsables de l'"+this.abrEcole+" :\n\n");
 			for (Respo  a: this.respoEcole) {
-				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.filiÃ¨re+"      "+a.pwd+"\n");
+				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.filière+"      "+a.pwd+"\n");
 				j++;
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 0, a.lastnamePers);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 1, a.firstnamePers);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 2, a.cniPers);
-				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 3, a.filiÃ¨re.nomFiliÃ¨re);
+				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 3, a.filière.nomFilière);
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 4, a.pwd);
 			}
 		}
@@ -227,7 +227,7 @@ public class Ecole implements Inscription{
 							f.classFiliere.add(c);
 							promo.classPromo.add(c);
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 0, c.toString());
-							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFiliÃ¨re());
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFilière());
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 2, c.promo.toString());
 						}
 						break;
@@ -520,7 +520,7 @@ public class Ecole implements Inscription{
 			}
 		}
 	}
-	public void removeFiliÃ¨re() {
+	public void removeFilière() {
 		int a=0;
 		while(a==0) {
 			if(this.filiereEcole.isEmpty()) {
