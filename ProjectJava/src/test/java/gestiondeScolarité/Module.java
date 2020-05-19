@@ -43,7 +43,7 @@ public class Module {
 			if (validModule.get(s)=="Validé") {
 				v++;
 			}
-			else if (validModule.get(s)=="Validé") {
+			else if (validModule.get(s)=="Non Validé") {
 				nv++;
 			}
 			else {

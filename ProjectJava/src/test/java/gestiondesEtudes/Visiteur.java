@@ -36,7 +36,7 @@ public class Visiteur extends Personne{
 	public void gestionVisiteur() {
 		int a=0;
 		while(a!=3) {
-		System.out.println("Choisissez votre prochaine action :\n 1) Afficher des informations sur l'Ã©cole\n 2) Afficher les filiÃ¨res de l'Ã©cole\n 3) Quitter");
+		System.out.println("Choisissez votre prochaine action :\n 1) Afficher des informations sur l'école\n 2) Afficher les filières de l'école\n 3) Quitter");
 		try {
 		switch(sc.next()) {
 		case "1" : e.afficherEcole(); gestionVisiteur(); break;

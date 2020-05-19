@@ -30,12 +30,12 @@ public class Absence {
 			absStud.put(s, false);
 		}
 		for (Student s:cl.getStud()) {
-			justif.put(s, "pr√©sent");
+			justif.put(s, "prÈsent");
 		}
 		
 	}
 	public void justifieAbs(Student s) {
-			if (this.justif.get(s).equalsIgnoreCase("non justifi√©"))
+			if (this.justif.get(s).equalsIgnoreCase("non justifiÈ"))
 			{
 				System.out.println("\nEntrez un motif d'absence :");
 				String j=sc.nextLine();
@@ -45,11 +45,11 @@ public class Absence {
 				s.setNbrTotalAbsence(s.getNbrModuleNV()-1);
 				this.element.notefinalElement.put(s,this.element.noteElement.get(s)-(double)((0.25)*this.element.absStud.get(s)));	
 			}
-			else if(this.justif.get(s).equalsIgnoreCase("pr√©sent")) {
-				System.out.println("\nL'√©tudiant √©tait pr√©sent");
+			else if(this.justif.get(s).equalsIgnoreCase("prÈsent")) {
+				System.out.println("\nL'Ètudiant Ètait prÈsent");
 			}
 			else {
-				System.out.println("\nVous avez d√©j√† justifi√© l'absence de cet √©tudiant" );
+				System.out.println("\nVous avez dÈj‡† justifiÈ l'absence de cet Ètudiant" );
 			}
 			this.element.module.notemodulestud();
 	}
@@ -57,10 +57,10 @@ public class Absence {
 	public void addAbsence(Student s) {
 		int a=this.element.absStud.get(s);
 		if(absStud.get(s)==true) {
-			System.out.println("\nVous avez d√©j√† marqu√© cet √©tudiant absent dans cette s√©ance");
+			System.out.println("\nVous avez dÈj‡† marquÈ cet Ètudiant absent dans cette sÈance");
 		}
 		else {
-		justif.put(s,"Non justifi√©");
+		justif.put(s,"Non justifiÈ");
 		absStud.put(s, true);
 		s.setNbrTotalAbsence(s.getNbrModuleNV()+1);
 		this.element.absStud.put(s,a+1);
@@ -92,7 +92,7 @@ public class Absence {
 
 	@Override
 	public String toString() {
-		return "El√©ment "+element+" : "+s.format(date);
+		return "ElÈment "+element+" : "+s.format(date);
 	}
 	
 	

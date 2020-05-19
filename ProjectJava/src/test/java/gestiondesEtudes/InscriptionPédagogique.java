@@ -20,7 +20,7 @@ public class InscriptionPédagogique {
 			this.ec = ec;
 			anneePromo=0;
 			while(anneePromo==0) {
-			System.out.println("Vous vous inscrivez au titre de la :\n 1) PremiÃ¨re annÃ©e\n 2) DeuxiÃ¨me annÃ©e\n 3) TroisiÃ¨me annÃ©e");
+			System.out.println("Vous vous inscrivez au titre de la :\n 1) Première année\n 2) Deuxième année\n 3) Troisième année");
 			try {
 			anneePromo = sc.nextInt();
 			sc.nextLine();
@@ -49,7 +49,7 @@ public class InscriptionPédagogique {
 		
 		
 		public void secondYear() {
-			System.out.println("\nChoisissez une filiÃ¨re :");
+			System.out.println("\nChoisissez une filière :");
 			ec.affichefiliereEcole();
 			filierechoisie=sc.nextInt();
 			f=ec.choisirFiliere(filierechoisie);
@@ -64,7 +64,7 @@ public class InscriptionPédagogique {
 					setEt(s);
 					if(s.Decision==null) {
 						
-						System.err.println("Pas de dÃ©cision pour le moment. Veuillez attendre la dÃ©cision du conseil");
+						System.err.println("Pas de décision pour le moment. Veuillez attendre la décision du conseil");
 						break;
 					}
 					
@@ -72,7 +72,7 @@ public class InscriptionPédagogique {
 					if (s.getDecision().equalsIgnoreCase("Passage")) {
 						s.setAnneePromo(2);	
 						c.stud.remove(s);
-							System.out.println("FÃ©licitations, vos notes et discipline vous ont permis de rÃ©ussir. \nBienvenue dans cette nouvelle annÃ©e !");
+							System.out.println("Félicitations, vos notes et discipline vous ont permis de réussir. \nBienvenue dans cette nouvelle année !");
 							System.out.println("\n----------------------\n");
 							
 							/*System.out.println("choisir la nouvelle promotion");
@@ -84,7 +84,7 @@ public class InscriptionPédagogique {
 							setEt(s);
 					}
 					else {
-							System.out.println("DÃ©solÃ©, vous allez redoubler. Bon courage !");
+							System.out.println("Désolé, vous allez redoubler. Bon courage !");
 					}
 					break;
 					}
@@ -98,7 +98,7 @@ public class InscriptionPédagogique {
 		
 		
 		public void thirdYear() {
-			System.out.println("\nChoisissez votre filiÃ¨re :");
+			System.out.println("\nChoisissez votre filière :");
 			ec.affichefiliereEcole();
 			filierechoisie=sc.nextInt();
 			f=ec.choisirFiliere(filierechoisie);
@@ -109,7 +109,7 @@ public class InscriptionPédagogique {
 						if (ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie).getDecision().equalsIgnoreCase("Passage")) {
 							ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie).setAnneePromo(3);	
 							ec.choisirFiliere(filierechoisie).choisirClassFilere().stud.remove(ec.choisirFiliere(filierechoisie).choisirClassFilere().choisirStud(studchoisie));
-								System.out.println("FÃ©licitations, vos notes et discipline vous ont permis de rÃ©ussir. \nBienvenue dans cette nouvelle annÃ©e !");
+								System.out.println("Félicitations, vos notes et discipline vous ont permis de réussir. \nBienvenue dans cette nouvelle année !");
 								System.out.println("\n----------------------\n");
 								
 								System.out.println("choisir la nouvelle promotion");
@@ -119,7 +119,7 @@ public class InscriptionPédagogique {
 								
 						}
 						else {
-								System.out.println("DÃ©solÃ©, vous allez redoubler. Bon courage !");
+								System.out.println("Désolé, vous allez redoubler. Bon courage !");
 						}
 		}
 		
@@ -128,7 +128,7 @@ public class InscriptionPédagogique {
 			case 1 : firstYear(); break;
 			case 2 : secondYear(); break;
 			case 3 : thirdYear(); break;
-			default : System.out.println("RÃ©essayer"); anneePromo = sc.nextInt(); gestion(); break;
+			default : System.out.println("Réessayer"); anneePromo = sc.nextInt(); gestion(); break;
 			}
 		}
 
