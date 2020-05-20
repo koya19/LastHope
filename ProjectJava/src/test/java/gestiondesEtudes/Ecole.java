@@ -31,7 +31,7 @@ public class Ecole implements Inscription{
 	//protected  Set <Promo> promoEcole= new HashSet<>();
 	protected  Set <Filiere> filiereEcole= new TreeSet<>();
 	protected  Set <Respo> respoEcole = new HashSet<>();
-	protected  Set <administrateur> adminEcole = new HashSet<>();
+	protected  Set <Administrateur> adminEcole = new HashSet<>();
 	public Set <Prof> profEcole= new HashSet<>();
 	public Map <Integer , Element > Salle= new HashMap<>();
 	public Map<Personne,String> pwdEcole =new HashMap<>();
@@ -92,7 +92,7 @@ public class Ecole implements Inscription{
 		String cniPers=sc.next();
 		System.out.println("\n  ->Entrez un mot de passe :");
 		String pwd=sc.next();	
-		administrateur a= new administrateur(lastnamePers,firstnamePers,cniPers,pwd,this);
+		Administrateur a= new Administrateur(lastnamePers,firstnamePers,cniPers,pwd,this);
 		this.adminEcole.add(a);
 		this.pwdEcole.put(a,pwd);
 		this.writeAdmin();
@@ -154,7 +154,7 @@ public class Ecole implements Inscription{
 		File f=new File("AdminEcole.txt");
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les administrateurs de l'"+this.abrEcole+" :\n\n");
-			for (administrateur a: this.adminEcole) {
+			for (Administrateur a: this.adminEcole) {
 				bw.write(a.lastnamePers+"  "+a.firstnamePers+"      "+a.cniPers+"\n");
 				v++;
 				ExcelUtils.setCellStringValue("./data/ListeAdmin.xlsx",v, 0, a.lastnamePers);
@@ -593,7 +593,7 @@ public class Ecole implements Inscription{
 		}
 		else {
 			System.out.println("\n--Choisir l'Admin");
-			for(administrateur a : this.adminEcole) {
+			for(Administrateur a : this.adminEcole) {
 				System.out.println("  "+i+"-"+a.toString());
 			}
 			try {
@@ -602,7 +602,7 @@ public class Ecole implements Inscription{
 					throw new InputMismatchException("Ce choix est invalide.")	;
 				}
 				i=1;
-				for (administrateur a : this.adminEcole) {
+				for (Administrateur a : this.adminEcole) {
 					if(i==admin) {
 						this.adminEcole.remove(a);
 						this.pwdEcole.remove(a);
@@ -950,11 +950,11 @@ public class Ecole implements Inscription{
 		this.type = type;
 	}
 
-	public Set<administrateur> getAdminEcole() {
+	public Set<Administrateur> getAdminEcole() {
 		return adminEcole;
 	}
 
-	public void setAdminEcole(Set<administrateur> adminEcole) {
+	public void setAdminEcole(Set<Administrateur> adminEcole) {
 		this.adminEcole = adminEcole;
 	}
 

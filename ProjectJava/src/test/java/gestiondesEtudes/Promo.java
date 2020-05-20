@@ -38,16 +38,14 @@ public class Promo {
 				System.out.println( iterator.next() );
 			}
 	 }
+	 
 	 @SuppressWarnings("rawtypes")
 	public void afficheStudPromo() {
 		 Iterator iterator = studPromo.iterator();
 		 System.out.println("\nLes étudiants de la promotion "  + this.toString());	
 		 while (iterator.hasNext()){
 	         System.out.println(iterator.next());
-		 }
-		 
-	
-		 
+		 }	 
 	 }
 
 }

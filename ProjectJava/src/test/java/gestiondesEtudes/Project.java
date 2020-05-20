@@ -53,7 +53,7 @@ public class Project {
 				String prenom =sc.nextLine();
 				System.out.println("\n ->Entrez un mot de passe");
 		 		String pwd =sc.nextLine();
-				administrateur admin=new administrateur(nom,prenom,pwd,ecole);
+				Administrateur admin=new Administrateur(nom,prenom,pwd,ecole);
 				if (admin.exist(ecole.adminEcole)==false) {//check l'existence de l'admin
 					System.out.println("\nVous n'êtes pas membre de l'administration\n");
 					id=0;

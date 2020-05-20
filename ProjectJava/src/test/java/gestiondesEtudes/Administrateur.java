@@ -3,21 +3,21 @@ package gestiondesEtudes;
 
 import java.util.Set;
 
-public class administrateur extends Personne{
+public class Administrateur extends Personne{
 	protected Ecole ecole;
 	protected String pwd;
 
- public administrateur () {
+ public Administrateur () {
 	 super();
 
  }
- public administrateur (String a, String b,String pwd,Ecole ecole) {
+ public Administrateur (String a, String b,String pwd,Ecole ecole) {
 		super(a,b);
 		this.ecole=ecole;
 		this.pwd=pwd;
 	
 		}
- public administrateur(String lastnamePers, String firstnamePers, String cniPers,String pwd,Ecole ecole)  {
+ public Administrateur(String lastnamePers, String firstnamePers, String cniPers,String pwd,Ecole ecole)  {
 	 super(lastnamePers, firstnamePers,cniPers);
 	 this.pwd=pwd;
 	 this.ecole=ecole;
@@ -36,8 +36,8 @@ public class administrateur extends Personne{
 public String toString() {
 	return   lastnamePers +" "+ firstnamePers ;
 }
-public boolean exist(Set<administrateur> list) {
-	for (administrateur admin: list) {
+public boolean exist(Set<Administrateur> list) {
+	for (Administrateur admin: list) {
 		if (admin.equals(this)) {
 			return true;
 			
@@ -49,7 +49,7 @@ public boolean exist(Set<administrateur> list) {
 }
 
 public boolean verificationPWD() {
-	for (administrateur a :ecole.adminEcole) {
+	for (Administrateur a :ecole.adminEcole) {
 		if (a.equals(this)) {
 			if (a.pwd.equals(this.pwd)) {
 				return true;
