@@ -67,7 +67,7 @@ public class ExcelUtils {
 	public static void getRowCount() {
 
 		int rowCount = sheet.getPhysicalNumberOfRows();
-		System.out.println("NÂ° of rows is " + rowCount);		
+		System.out.println("N° of rows is " + rowCount);		
 
 	}
 
@@ -96,34 +96,9 @@ public class ExcelUtils {
 		wb.close();
 	}
 	
-	public static void setCellIntValue(int rowNum, int cellNum, int value) throws IOException {
+	public static void setCellIntValue(String path, int rowNum, int cellNum, int value) throws IOException {
 
-		File f = new File("./data/Testu.xlsx");
-
-		FileInputStream fis = new FileInputStream(f);
-
-		XSSFWorkbook wb = new XSSFWorkbook(fis);
-
-		XSSFSheet sheet = wb.getSheetAt(0);
-		
-		try {
-			sheet.getRow(rowNum).createCell(cellNum).setCellValue(value);
-		}
-		catch (NullPointerException e) {
-			e.printStackTrace();
-			sheet.createRow(rowNum).createCell(cellNum).setCellValue(value);
-		}
-
-		FileOutputStream fileOut = new FileOutputStream(f);
-
-		wb.write(fileOut);
-
-		wb.close();
-	}
-	
-	public static void setCellFloatValue(int rowNum, int cellNum, float value) throws IOException {
-
-		File f = new File("./data/Testu.xlsx");
+		File f = new File(path);
 
 		FileInputStream fis = new FileInputStream(f);
 
@@ -146,9 +121,34 @@ public class ExcelUtils {
 		wb.close();
 	}
 	
-	public static void setCellDateValue(int rowNum, int cellNum, Date value) throws IOException {
+	public static void setCellFloatValue(String path, int rowNum, int cellNum, float value) throws IOException {
 
-		File f = new File("./data/Testu.xlsx");
+		File f = new File(path);
+
+		FileInputStream fis = new FileInputStream(f);
+
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+
+		XSSFSheet sheet = wb.getSheetAt(0);
+		
+		try {
+			sheet.getRow(rowNum).createCell(cellNum).setCellValue(value);
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+			sheet.createRow(rowNum).createCell(cellNum).setCellValue(value);
+		}
+
+		FileOutputStream fileOut = new FileOutputStream(f);
+
+		wb.write(fileOut);
+
+		wb.close();
+	}
+	
+	public static void setCellDateValue(String path, int rowNum, int cellNum, Date value) throws IOException {
+
+		File f = new File(path);
 
 		FileInputStream fis = new FileInputStream(f);
 
