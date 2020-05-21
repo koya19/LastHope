@@ -1,6 +1,6 @@
 package gestiondeScolarité;
 import gestiondesEtudes.Student;
-import gestiondesEtudes.Class;
+import gestiondesEtudes.Classe;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Absence {
 	//protected boolean justification;
 	public Map  <Student,Boolean>absStud=new TreeMap<>();
 	public Map<Student,String>justif=new TreeMap<>();
-	protected Class cl;
+	protected Classe cl;
 	SimpleDateFormat s= new SimpleDateFormat("dd MM yyyy");
 	Scanner sc=new Scanner(System.in);
 	String Newligne=System.getProperty("line.separator");

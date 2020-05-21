@@ -1,7 +1,7 @@
 package gestiondeScolarité;
 
 import gestiondesEtudes.Student;
-import gestiondesEtudes.Prof;
+import gestiondesEtudes.Professeur;
 
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class Element {
 	public Map<Student,Integer> noteElement= new TreeMap<>();
 	protected Map<Student,Double> notefinalElement= new TreeMap<>();
 	protected Map<String,Integer> repartheureElement= new HashMap<>();
-	protected Map<String, Prof> enseignantElement= new HashMap<>();
+	protected Map<String, Professeur> enseignantElement= new HashMap<>();
 	protected Map<Student,Integer> absStud=new TreeMap<>();
 	Scanner sc=new Scanner(System.in);
 	String Newligne=System.getProperty("line.separator");
@@ -66,7 +66,7 @@ public class Element {
 			String cniPers=sc.next();
 			System.out.println("\n    ->Entrez le mot de passe :");
 			String pwd=sc.next();	
-			Prof a= new Prof (lastnamePers,firstnamePers,cniPers,pwd,this);
+			Professeur a= new Professeur (lastnamePers,firstnamePers,cniPers,pwd,this);
 			this.enseignantElement.put((String) mapentry.getKey(),a);
 			module.cl.profClass.add(a);
 			module.cl.getEcole().profEcole.add(a);
@@ -163,9 +163,9 @@ public class Element {
 
 	}
 
-	public void addprof(String rep,Prof prof) {
-		enseignantElement.put(rep, prof);
-		System.out.println("\nVous avez désigné " +prof.toString()+" comme prof de l'élément "+prof.getElement()+" dans le "+prof.getModule());
+	public void addprof(String rep,Professeur professeur) {
+		enseignantElement.put(rep, professeur);
+		System.out.println("\nVous avez désigné " +professeur.toString()+" comme prof de l'élément "+professeur.getElement()+" dans le "+professeur.getModule());
 
 	}
 
@@ -215,10 +215,10 @@ public class Element {
 	public void setNomElement(String nomElement) {
 		this.nomElement = nomElement;
 	}
-	public Map<String, Prof> getEnseignantElement() {
+	public Map<String, Professeur> getEnseignantElement() {
 		return enseignantElement;
 	}
-	public void setEnseignantElement(Map<String, Prof> enseignantElement) {
+	public void setEnseignantElement(Map<String, Professeur> enseignantElement) {
 		this.enseignantElement = enseignantElement;
 	}
 

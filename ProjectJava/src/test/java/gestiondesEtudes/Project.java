@@ -1,15 +1,20 @@
 package gestiondesEtudes;
 
 import java.io.IOException;
+import gestiondeScolarité.Module;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import gestiondeScolarité.Element;
 
+@SuppressWarnings("unused")
 public class Project {
 
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings({ "deprecation"})
 	public static void main(String[] args) throws ParseException, IOException   {
+		
+		
 		Scanner sc= new Scanner(System.in);
 		String Newligne=System.getProperty("line.separator");
 		
@@ -186,14 +191,181 @@ public class Project {
 									}//menu statist d'etudes
 								}//stat sur les etudes
 								if(ad2==2) {//stat sur la scolarité
+									ad2=6;
+									while(ad2==6){//menu statist de scolarité
+										System.out.println("Choisissez votre prochaine action:\n    1) Afficher le nombre d'étudiant dans une classe\n    2) Afficher nombre de professeurs dans une classe\n    3) Afficher nombre d'inscrit\n    4) Retour\n");
+										try {//try 2
+											ad2=sc.nextInt();	
+											if (ad2!=1 && ad2!=2 && ad2!=3 && ad2!=4 && ad2!=5) {
+												throw new InputMismatchException("Ce choix est invalide");
+												}
+										}//try 2
+										catch(InputMismatchException er) {//catch 2
+											System.out.println();
+											System.err.println("Ce choix est invalide");
+											sc.nextLine();
+											ad2=6;
+											
+										}//catch2
+										
+										if (ad2==1) {//Afficher le nombre d'étudiant dans une classe
+											
+											System.out.println("-Choisir la filière :");
+											ecole.affichefiliereEcole();
+											int filierechoisie =sc.nextInt();
+											Filiere filiere= ecole.choisirFiliere(filierechoisie);
+											filiere.nbrEtudParClass();
+											ad2=6;
+										}//Afficher le nombre d'étudiant dans une classe
+										if(ad2==2) {//Afficher nombre de professeurs dans une classe
+											System.out.println("-Choisir la filière :");
+											ecole.affichefiliereEcole();
+											int filierechoisie =sc.nextInt();
+											Filiere filiere= ecole.choisirFiliere(filierechoisie);
+											filiere.nbrProfParClass();
+											ad2=6;
+										}//Afficher nombre de professeurs dans une classe
+										if(ad2 == 3) {//Afficher nombre d'inscrit
+											ecole.statInscriptionSexe();
+											ad2=6;
+										}//Afficher nombre d'inscrit
+										
+										if(ad2==4) {//retour
+											ad2=0;
+										}//retour
+									}//menu statist de scolarité
+									
+									
 									ad2=0;
 								}//stat sur la scolarité
 								if(ad2==3) {//stat sur les examen
-									ad2=0;
+									ad2=6;
+									while(ad2==6){//menu statist d' exam
+									System.out.println("Choisissez votre prochaine action:\n    1) Afficher les statistiques de réussite\n    2) Afficher les statiques de mention\n    3) Afficher le taux de validation\n    4) PV de déliberation \n    5) Retour\n");
+									try {//try 2
+										ad2=sc.nextInt();	
+										if (ad2!=1 && ad2!=2 && ad2!=3 && ad2!=4 && ad2!=5) {
+											throw new InputMismatchException("Ce choix est invalide");
+											}
+									}//try 2
+									catch(InputMismatchException er) {//catch 2
+										System.out.println();
+										System.err.println("Ce choix est invalide");
+										sc.nextLine();
+										ad2=6;
+										
+									}//catch2
+									
+									if (ad2==1) {//Afficher les statistiques de réussite
+										ConseilDeClasse.statsReussite();
+										ad2=6;
+									}//Afficher les statistiques de réussite
+								
+									if (ad2==2) {//Afficher les statiques de mention
+								
+										while(ad2==2) {
+										System.out.println("-Choisir la filière :");
+										ecole.affichefiliereEcole();
+										
+										try {
+											int filierechoisie =sc.nextInt();
+											if(1>filierechoisie|| filierechoisie>ecole.filiereEcole.size()) {
+												throw new InputMismatchException("Ce choix est invalide.");
+											}
+											Filiere filiere= ecole.choisirFiliere(filierechoisie);
+											Classe cl=filiere.choisirClassFilere();
+											cl.statMention();
+											ad2=6;
+										} catch (InputMismatchException er) {
+											System.out.println();
+											System.err.println("Ce choix est invalide.");
+											sc.nextLine();
+											ad2=2;
+										}
+										catch(NullPointerException eR) {
+											System.out.println();
+											System.err.println("Pas de choix actuellement.");
+											sc.nextLine();
+											ad2=2;
+											}
+										}
+									}//Afficher les statiques de mention
+									
+									if (ad2==3) { //Afficher le taux de validation
+										while(ad2==3) {
+											
+										System.out.println("-Choisir la filière :");
+										ecole.affichefiliereEcole();
+										
+										try {
+											int filierechoisie =sc.nextInt();
+											if(1>filierechoisie|| filierechoisie>ecole.filiereEcole.size()) {
+												throw new InputMismatchException("Ce choix est invalide.");
+											}
+											Filiere filiere= ecole.choisirFiliere(filierechoisie);
+											Classe cl=filiere.choisirClassFilere();
+											cl.choisirModule().tauxDeValidation();
+											ad2=6;
+										}catch (InputMismatchException er) {
+											System.out.println();
+											System.err.println("Ce choix est invalide.");
+											sc.nextLine();
+											ad2=3;
+										}
+										catch(NullPointerException er) {
+											System.out.println();
+											System.err.println("Pas de choix actuellement.");
+											sc.nextLine();
+											ad2=3;
+											}
+										}
+									}// Afficher le taux de validation
+									
+									if (ad2==4) {//pv 
+										while(ad2==4) {
+											
+											System.out.println("-Choisir la filière :");
+											ecole.affichefiliereEcole();
+											
+											try {
+												int filierechoisie =sc.nextInt();
+												if(1>filierechoisie|| filierechoisie>ecole.filiereEcole.size()) {
+													throw new InputMismatchException("Ce choix est invalide.");
+												}
+												Filiere filiere= ecole.choisirFiliere(filierechoisie);
+												Classe cl=filiere.choisirClassFilere();
+												PvDeDélibération pv=new PvDeDélibération(cl);
+												pv.générerPV();
+												ad2=6;
+											}
+											catch (InputMismatchException er) {
+												System.out.println();
+												System.err.println("Ce choix est invalide.");
+												sc.nextLine();
+												ad2=4;
+											}
+											catch(NullPointerException er) {
+												System.out.println();
+												System.err.println("Pas de choix actuellement.");
+												sc.nextLine();
+												ad2=4;
+												}
+										}
+									}//Pv
+									if (ad2==5) {//retour
+										ad2=0;
+									}//retour
+										
+									
+									
+								}//menu statist de Exam
+									
+									
 								}//stat sur les examen
 								if(ad2==4) {//retour2
 									ad1=0;
 								}//retour2
+								
 							}//menu les statistique et rapports
 						}//les statistique et rapports
 						if(ad1==3) {//retour1
@@ -224,7 +396,7 @@ public class Project {
 				}//existence des responsable
 				else {//le SET n'est p vide
 					
-					Respo resp =ecole.connectionRespo(nom, prenom, pwd);
+					Responsable resp =ecole.connectionRespo(nom, prenom, pwd);
 					if(resp.exist()==false) {//existences du respo connecte
 						System.out.println("Vous n'êtes pas enregistré comme responsable.");
 						id=0;
@@ -291,7 +463,7 @@ public class Project {
 									if(r1==5) {//Gestion d'emploi
 										
 										
-										Class cl= resp.filière.choisirClassFilere();
+										Classe cl= resp.filière.choisirClassFilere();
 										
 										SimpleDateFormat s= new SimpleDateFormat("dd MM yyyy");
 										int r2=0;
@@ -402,13 +574,13 @@ public class Project {
 											}//AFFICHAGE classe
 											if(r2==2) {//affichage etudiant
 												
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												cl.affichestudClass();
 												r2=0;
 											}//affichage etudiant
 											if (r2==3) {//afficher les profs
 												
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												
 												cl.afficherProf();
 												r2=0;
@@ -416,23 +588,23 @@ public class Project {
 											}//afficher les profs
 											if(r2==4) {// affichage les emploi
 												
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												cl.afficheEdtClass();
 												r2=0;
 											}//affichage les emploi
 											if (r2==5) {// affichage module
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												cl.affichermoduleClass();
 												r2=0;
 											}// affichage module
 											if(r2==6) {//affichage element 
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												cl.afficherElementClass();
 												r2=0;
 												
 											}//affichage element 
 											if (r2==7) {//PV
-												Class cl= resp.filière.choisirClassFilere();
+												Classe cl= resp.filière.choisirClassFilere();
 												cl.affichermoduleClass();
 												PvDeDélibération p =new PvDeDélibération(cl)	;
 												p.générerPV();
@@ -457,7 +629,7 @@ public class Project {
 							if(r1==2) {//gestion de scolarité 
 								int r2=0;
 								while(r2==0) {//MENU GESTION SCOLARITE
-									System.out.println("\nChoisissez votre prochaine action :\n    1) Gestion des notes\n    2) Gestion des absences\n       3) Retour\n");
+									System.out.println("\nChoisissez votre prochaine action :\n    1) Gestion des notes\n    2) Gestion des absences\n    3) Retour\n");
 									try {
 									r2=sc.nextInt();
 									if (r2!=1 && r2!=2  && r2!=3) {
@@ -477,7 +649,7 @@ public class Project {
 									if (r2==1) {//gestion des notes
 										int r3=0;
 										while(r3==0) {
-											System.out.println("\nChoisissez votre prochaine action:\n    1) Entrer les notes\n    2) Modifier les notes\n    3) Afficher les notes\n   4) Retour");
+											System.out.println("\nChoisissez votre prochaine action:\n    1) Entrer les notes\n    2) Modifier les notes\n    3) Afficher les notes\n    4) Retour");
 											try {
 											r3=sc.nextInt();
 											if (r2!=1 && r2!=2  && r2!=3 && r1!=4) {
@@ -492,16 +664,19 @@ public class Project {
 											
 										}//catch 1		
 											if(r3==1) {//entrer les notes 
-												Class cl=resp.filière.choisirClassFilere();
+												Classe cl=resp.filière.choisirClassFilere();
 												cl.addnoteStud();
+												r3=0;
 											}//entrer les notes
 											if(r3==2) {//modifier les notes
-												Class cl=resp.filière.choisirClassFilere();
+												Classe cl=resp.filière.choisirClassFilere();
 												cl.ModnoteStud();
+												r3=0;
 											}//modifier les notes
 											if(r3==3) {//afficher les notes
-												Class cl=resp.filière.choisirClassFilere();
+												Classe cl=resp.filière.choisirClassFilere();
 												cl.affichernoteModuleClass();
+												r3=0;
 											}//afficher les notes
 											if(r3==4) {//retour
 												r2=0;
@@ -526,12 +701,12 @@ public class Project {
 											
 										}//catch 1	
 											if(r2==1) {//ajout de l'abs
-												Class cl = resp.filière.choisirClassFilere();
+												Classe cl = resp.filière.choisirClassFilere();
 												cl.addAbs();
 												r2=1;
 											}//ajout de l'abs
 											if(r2==2) {//justif
-												Class cl = resp.filière.choisirClassFilere();
+												Classe cl = resp.filière.choisirClassFilere();
 												cl.justifieAbs();
 												r2=1;
 											}//justif
@@ -575,19 +750,19 @@ public class Project {
 					id=0;
 				}//existence des prof
 				else {//le SET n'est p vide
-					Prof prof =new Prof (nom, prenom,pwd);
-					if(prof.exist(ecole.profEcole)==false) {//existences du prof connecte
+					Professeur professeur =new Professeur (nom, prenom,pwd);
+					if(professeur.exist(ecole.profEcole)==false) {//existences du prof connecte
 						System.out.println("Vous n'êtes pas inscrit comme un enseignant.");
 						id=0;
 					}//existences du prof connecte
-					else if(ecole.profverificationPWD(prof)==false) {//verifi pwd
+					else if(ecole.profverificationPWD(professeur)==false) {//verifi pwd
 						System.out.println("\nMot de passe est incorrecte");
 						id=0;
 					}//verifi pwd
 					else {//pwd o existence verifié
-						for(Prof p:ecole.profEcole) {//affectation des données
-							if(p.equals(prof)) {//affectation des données
-								prof=p;
+						for(Professeur p:ecole.profEcole) {//affectation des données
+							if(p.equals(professeur)) {//affectation des données
+								professeur=p;
 								break;
 							}//affectation des données
 						}//affectation des données
@@ -607,11 +782,11 @@ public class Project {
 									r1=0;
 								}//catch 1
 								if(r1==1) {//afficher les notes
-									prof.element.affichenoteElement();
+									professeur.element.affichenoteElement();
 									r1=0;
 								}
 								if(r1==2) {//afficher l'emploi
-									prof.module.cl.afficheEdtClass();
+									professeur.module.cl.afficheEdtClass();
 									r1=0;
 								}
 								if(r1==3) {//retour
@@ -658,9 +833,10 @@ public class Project {
 						try {
 						
 						if(s1!=1 && s1!=2) {
+							s1=sc.nextInt();
 							throw new InputMismatchException("Ce choix est invalide");
 						}
-						s1=sc.nextInt();
+						
 						if(s1==2) {
 							s1=4;
 						}
@@ -731,9 +907,8 @@ public class Project {
 			}//connection etudiant
 //----------------------------VISITEUR--------------------------------------------------------
 			if(id==5) {//connection visiteur
-				Visiteur v=new Visiteur(ecole);
-				
-				if(sc.next().equals("3")) id = 0;
+				Visiteur v=new Visiteur(ecole);	
+				id=0;
 			}//connection visiteur
 	 		
 	 		

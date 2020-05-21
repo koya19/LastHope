@@ -16,28 +16,28 @@ import java.util.HashSet;
 
 import Excel.ExcelUtils;
 
-public class Class  implements Comparable<Class> {
+public class Classe  implements Comparable<Classe> {
 	protected Ecole ecole;
-	protected Promo promo;
+	protected Promotion promotion;
 	protected Filiere filiere;
 	protected Set <Student> stud =new TreeSet <>();
 	public Set <Module> moduleClass=new HashSet<>();
 	public Set <EDT> emploi= new HashSet<>();
 	public Set <Absence> abs=new HashSet <>();
-	public Set <Prof> profClass= new HashSet<>();
+	public Set <Professeur> profClass= new HashSet<>();
 	SimpleDateFormat s= new SimpleDateFormat("dd MM yyyy");
 	Scanner sc=new Scanner(System.in);
 	String Newligne=System.getProperty("line.separator");
 	
 	static int i = 0;
 	//-----------------------------------------------------------------------------------------	
-	public Class() {
+	public Classe() {
 	}
 	@SuppressWarnings("unused")
-	public Class(Filiere filiere,Promo promo) {
+	public Classe(Filiere filiere,Promotion promotion) {
 		this.filiere=filiere ;
-		this.promo=promo ;
-		promo.classPromo.add(this);
+		this.promotion=promotion ;
+		promotion.classPromo.add(this);
 		filiere.classFiliere.add(this);
 		filiere.ecole.classEcole.add(this);
 		filiere.ecole.classEcole.add(this);
@@ -79,10 +79,10 @@ public class Class  implements Comparable<Class> {
 
 	public void addStud(Student s) {
 		if (stud.contains(s))
-			System.out.println("\nL'étudiant "+ s.lastnamePers+" "+ s.firstnamePers + " existe déja dans la classe "+ filiere.nomFilière+" "+promo.nPromo);
+			System.out.println("\nL'étudiant "+ s.lastnamePers+" "+ s.firstnamePers + " existe déja dans la classe "+ filiere.nomFilière+" "+promotion.nPromo);
 		else
 			stud.add(s);
-		promo.studPromo.add(s);
+		promotion.studPromo.add(s);
 		filiere.studFiliere.add(s);
 		ecole.studEcole.add(s);
 		ecole.pwdEcole.put(s, s.pwd);
@@ -90,12 +90,12 @@ public class Class  implements Comparable<Class> {
 		s.filière=this.filiere;
 
 		//Collections.sort(l);
-		System.out.println("\nVous avez ajouté l'étudiant "+s.lastnamePers+" "+  s.firstnamePers +" "+ " à la classe "+ filiere.nomFilière+" "+promo.nPromo);
+		System.out.println("\nVous avez ajouté l'étudiant "+s.lastnamePers+" "+  s.firstnamePers +" "+ " à la classe "+ filiere.nomFilière+" "+promotion.nPromo);
 
 	}
 
 	public String toString() {
-		return  filiere.nomFilière+" "+promo.nPromo ;
+		return  filiere.nomFilière+" "+promotion.nPromo ;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -268,7 +268,7 @@ public class Class  implements Comparable<Class> {
 
 	}
 
-	public int compareTo(Class c) {
+	public int compareTo(Classe c) {
 
 		return this.filiere.nomFilière.compareTo(c.filiere.nomFilière) ;
 	}
@@ -287,7 +287,7 @@ public class Class  implements Comparable<Class> {
 		}
 
 	}
-	public void addprof(Prof prof) throws IOException {
+	public void addprof(Professeur professeur) throws IOException {
 		String Newligne=System.getProperty("line.separator");
 		Scanner sc=new Scanner(System.in);
 		System.out.println("\nChoisissez un module :");
@@ -299,65 +299,65 @@ public class Class  implements Comparable<Class> {
 		for (Module m: this.moduleClass) {
 			if(i==modulechoisi) {
 				i=1;
-				prof.module=m;
+				professeur.module=m;
 				System.out.println("\nChoisissez un élément :");
 				m.affichEleModule();
 				int elementchoisi=sc.nextInt();
 				sc.nextLine();
 				for(Element e:m.getEleModule()) {
 					i=1;
-					prof.element=e;
+					professeur.element=e;
 					System.out.println("\nChoisissez une discipline"+Newligne+" 1) CM"+Newligne+" 2) TP"+Newligne+" 3) TD"+Newligne+" 4) AP");
 					int disciplinechoisie=sc.nextInt();
 					sc.nextLine();
 					if(i==elementchoisi) {
 						if (disciplinechoisie==1) {
-							Class.i++;
-							e.addprof("CM",prof);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "CM");
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
+							Classe.i++;
+							e.addprof("CM",professeur);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 0, professeur.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 1, professeur.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 2, professeur.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 5, "CM");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 6, professeur.pwd);
 							break;
 						}
 						
 						else if (disciplinechoisie==2) {
-							Class.i++;
-							e.addprof("TP",prof);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "TP");
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
+							Classe.i++;
+							e.addprof("TP",professeur);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 0, professeur.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 1, professeur.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 2, professeur.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 5, "TP");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 6, professeur.pwd);
 							break;
 						}
 						else if (disciplinechoisie==3) {
-							Class.i++;
-							e.addprof("TD",prof);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "TD");
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
+							Classe.i++;
+							e.addprof("TD",professeur);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 0, professeur.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 1, professeur.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 2, professeur.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 5, "TD");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 6, professeur.pwd);
 							break;
 						}
 						else if (disciplinechoisie==4) {
-							Class.i++;
-							e.addprof("AP",prof);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 0, prof.lastnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 1, prof.firstnamePers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 2, prof.cniPers);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 3, e.getNomElement());
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 4, m.nomModule);
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 5, "AP");
-							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Class.i, 6, prof.pwd);
+							Classe.i++;
+							e.addprof("AP",professeur);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 0, professeur.lastnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 1, professeur.firstnamePers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 2, professeur.cniPers);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 3, e.getNomElement());
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 4, m.nomModule);
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 5, "AP");
+							ExcelUtils.setCellStringValue("./data/ListeProf.xlsx",Classe.i, 6, professeur.pwd);
 							break;
 						}
 						break;
@@ -589,6 +589,10 @@ public class Class  implements Comparable<Class> {
 		int a=2;
 		while(a==2) {
 			System.out.println("\nChoisissez le module :");
+			if (this.moduleClass.isEmpty()) {
+				System.out.println("pas de module pour le moment");
+			}
+			else {
 			this.affichermoduleClass();
 			try {
 				int modulechoisi=sc.nextInt();
@@ -622,17 +626,22 @@ public class Class  implements Comparable<Class> {
 											System.out.println("\nEntrer la note de l'élément de l'etudiant "+ s.toString());
 											int note=sc.nextInt();
 											sc.nextLine();
-											e.modnote(s,note);
+											e.noteElement.put(s,note);
+											
+										}
 											System.out.println("    1) Entrez les notes d'un autre élément\n    2) Entrez les notes des élement d'un autres modules\n    3) Retour");
 											a=sc.nextInt();
-
-										}
-										break;
+											if(a==3) {
+												break;
+											}
+										
+										
 
 									}
 									else i++;
 								}
-
+								m.notemodulestud();
+								break;
 							}catch(InputMismatchException e) {
 								System.out.println();
 								System.err.println("Ce choix est invalide");
@@ -647,6 +656,8 @@ public class Class  implements Comparable<Class> {
 								a=1;
 							}
 						}
+						
+						
 					}
 
 					else i++;
@@ -663,6 +674,7 @@ public class Class  implements Comparable<Class> {
 				System.err.println("Pas de choix actuellement.");
 				sc.nextLine();
 				a=2;
+			}
 			}
 		}
 
@@ -1156,7 +1168,7 @@ public class Class  implements Comparable<Class> {
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les enseignants de cette classe "+this.ecole.abrEcole+"\n\n");
 			for (Module m: this.moduleClass) {
-				for(Prof p:m.profClass) {
+				for(Professeur p:m.profClass) {
 					bw.write(p.lastnamePers+"  "+p.firstnamePers+"      "+p.cniPers+"      "+p.module+"      "+p.element+"       \n");
 				}
 
@@ -1204,11 +1216,11 @@ public class Class  implements Comparable<Class> {
 		}
 	}
 	//----------------------------------GETTERS & SETTERS--------------------------------------------------------------
-	public Promo getPromo() {
-		return promo;
+	public Promotion getPromo() {
+		return promotion;
 	}
-	public void setPromo(Promo promo) {
-		this.promo = promo;
+	public void setPromo(Promotion promotion) {
+		this.promotion = promotion;
 	}
 	public Filiere getFiliere() {
 		return filiere;

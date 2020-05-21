@@ -5,7 +5,7 @@ import gestiondeScolarité.Module;
 import java.util.Set;
 
 
-public class Prof extends Personne{
+public class Professeur extends Personne{
 	protected final String profession ="Professeur";
 	protected Element element;
 	protected Module module;
@@ -13,16 +13,16 @@ public class Prof extends Personne{
 
 	//----------------------------------GETTERS & SETTERS--------------------------------------------------------------
 		
-	public Prof () {
+	public Professeur () {
 		super();
 		
 		
 	}
-	public Prof (String a, String b,String pwd) {
+	public Professeur (String a, String b,String pwd) {
 		super(a,b);
 		this.pwd=pwd;
 		}
-	public Prof(String nom) {
+	public Professeur(String nom) {
 		this.lastnamePers=nom;
 		System.out.println("\nCréation du prof "+ this.toString());
 	}
@@ -39,7 +39,7 @@ public class Prof extends Personne{
 		this.module = module;
 	}
 	
-	public Prof (String lastnamePers, String firstnamePers, String cniPers,String pwd,Element e) {
+	public Professeur (String lastnamePers, String firstnamePers, String cniPers,String pwd,Element e) {
 		super (lastnamePers, firstnamePers,cniPers);
 		this.pwd=pwd;
 		this.element=e;
@@ -53,8 +53,8 @@ public class Prof extends Personne{
 		
 	}
 	
-	public boolean exist(Set<Prof> list) {
-		for (Prof p: list) {
+	public boolean exist(Set<Professeur> list) {
+		for (Professeur p: list) {
 			if (p.equals(this)) {
 				return true;
 				

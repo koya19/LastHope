@@ -1,21 +1,21 @@
 package gestiondesEtudes;
 import java.util.*;
 
-public class Promo {
+public class Promotion {
 	protected int nPromo;
-	protected Set<Class> classPromo= new HashSet<>();
+	protected Set<Classe> classPromo= new HashSet<>();
 	protected Set <Student>studPromo=new TreeSet<>();
 	
-	public Promo () {
+	public Promotion () {
 		nPromo=0;
 		
 	}
-	public Promo (int a) {
+	public Promotion (int a) {
 		nPromo=a;
 		
 	}
 	
-	public Promo(Filiere filiere,int b) {
+	public Promotion(Filiere filiere,int b) {
 		nPromo=b;
 		
 		filiere.promoFiliere.add(this);

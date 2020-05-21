@@ -18,7 +18,7 @@ public class Student  extends Personne implements Comparable<Student> {
 	protected String CNE;
 	protected String sexe;
 	Date date = new Date();
-	protected Class c;
+	protected Classe c;
 	protected Filiere filière;
 	protected int anneePromo;
 	protected String formation;
@@ -103,7 +103,7 @@ public Student(Class c,String lastnamePers, String firstnamePers, String cniPers
 		 this.lastnamePers = lastnameStud;
 	 }
 
-	 public Class getC() {
+	 public Classe getC() {
 		 return c;
 	 }
 
@@ -115,7 +115,7 @@ public Student(Class c,String lastnamePers, String firstnamePers, String cniPers
 		 CNE = cNE;
 	 }
 
-	 public void setC(Class c) {
+	 public void setC(Classe c) {
 		 this.c = c;
 	 }
 	 public String toString() {

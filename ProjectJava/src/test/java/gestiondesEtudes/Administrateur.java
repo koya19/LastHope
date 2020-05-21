@@ -25,9 +25,9 @@ public class Administrateur extends Personne{
 	
  
 }
- public void addRespo(Respo respo, Filiere filiere) {
-	 ecole.respoEcole.add(respo);
-	 respo.filière=filiere;
+ public void addRespo(Responsable responsable, Filiere filiere) {
+	 ecole.respoEcole.add(responsable);
+	 responsable.filière=filiere;
  }
  
  public void inscriptionStudent() {

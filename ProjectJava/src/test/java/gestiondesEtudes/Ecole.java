@@ -26,13 +26,17 @@ public class Ecole implements Inscription{
 	protected  String fondateur;
 	protected  String type;
 	protected  final String pwd="ADMIN";
+	protected  int nbrFemme = 0;
+	protected  int nbrHomme = 0;
+	protected  int nbrPassage = 0;
+	protected  int nbrRedoublant = 0;
 	protected  Set <Student> studEcole=new TreeSet<>();
-	protected  Set <Class> classEcole= new HashSet<>();
+	protected  Set <Classe> classEcole= new HashSet<>();
 	//protected  Set <Promo> promoEcole= new HashSet<>();
 	protected  Set <Filiere> filiereEcole= new TreeSet<>();
-	protected  Set <Respo> respoEcole = new HashSet<>();
+	protected  Set <Responsable> respoEcole = new HashSet<>();
 	protected  Set <Administrateur> adminEcole = new HashSet<>();
-	public Set <Prof> profEcole= new HashSet<>();
+	public Set <Professeur> profEcole= new HashSet<>();
 	public Map <Integer , Element > Salle= new HashMap<>();
 	public Map<Personne,String> pwdEcole =new HashMap<>();
 	Scanner sc=new Scanner(System.in);
@@ -121,7 +125,7 @@ public class Ecole implements Inscription{
 			String cniPers=sc.next();
 			System.out.println("\n  ->Entrez un mot de passe pour ce responsable :");
 			String pwd=sc.next();
-			Respo r= new Respo(lastnamePers,firstnamePers,cniPers,f,pwd);
+			Responsable r= new Responsable(lastnamePers,firstnamePers,cniPers,f,pwd);
 			this.pwdEcole.put(r,pwd);
 			this. writeRespo();
 
@@ -175,7 +179,7 @@ public class Ecole implements Inscription{
 		File f=new File("RespoEcole.txt");
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(f))) {
 			bw.write("Les responsables de l'"+this.abrEcole+" :\n\n");
-			for (Respo  a: this.respoEcole) {
+			for (Responsable  a: this.respoEcole) {
 				bw.write(a.lastnamePers+" "+a.firstnamePers+"      "+a.cniPers+"      "+a.filière+"      "+a.pwd+"\n");
 				j++;
 				ExcelUtils.setCellStringValue("./data/ListeRespo.xlsx",j, 0, a.lastnamePers);
@@ -211,9 +215,9 @@ public class Ecole implements Inscription{
 				int i=1;
 				for (Filiere f: this.filiereEcole) {
 					if(i==a) {
-						for(Promo promo:f.promoFiliere) {
+						for(Promotion promotion:f.promoFiliere) {
 
-							if (promo.nPromo==p) {
+							if (promotion.nPromo==p) {
 								System.out.println("Cette classe est déjà  ajoutée");
 								i=0;
 								break;
@@ -221,14 +225,14 @@ public class Ecole implements Inscription{
 							else i++;
 						}
 						if (i!=0) {
-							Promo promo=new Promo (f,p);
-							Class c= new Class (f,promo);
+							Promotion promotion=new Promotion (f,p);
+							Classe c= new Classe (f,promotion);
 							this.classEcole.add(c);
 							f.classFiliere.add(c);
-							promo.classPromo.add(c);
+							promotion.classPromo.add(c);
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 0, c.toString());
 							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 1, c.filiere.getNomFilière());
-							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 2, c.promo.toString());
+							ExcelUtils.setCellStringValue("./data/ListeDesClasses.xlsx",i, 2, c.promotion.toString());
 						}
 						break;
 					}
@@ -298,7 +302,7 @@ public class Ecole implements Inscription{
 		System.out.println("Les classe de la "  + f);
 		int i=1;
 		while (iterator.hasNext()){
-			Class cl=(Class) iterator.next();
+			Classe cl=(Classe) iterator.next();
 			if (cl.filiere==f) {
 				System.out.println(i+"- "+iterator.next());
 				i++;
@@ -347,9 +351,9 @@ public class Ecole implements Inscription{
 
 
 
-	public Class choisirClass(int a) {
+	public Classe choisirClass(int a) {
 		int i=1;
-		for (Class c : this.classEcole) {
+		for (Classe c : this.classEcole) {
 			if(i==a) {
 				return c;		
 			}
@@ -485,9 +489,9 @@ public class Ecole implements Inscription{
 					}
 					int i =1;
 
-					for (Class c:this.classEcole) {
+					for (Classe c:this.classEcole) {
 						if(i==clchoisie) {
-							for(Prof p: c.profClass) {
+							for(Professeur p: c.profClass) {
 								this.profEcole.remove(p);
 							}
 							c.filiere.classFiliere.remove(c);
@@ -541,14 +545,14 @@ public class Ecole implements Inscription{
 					int i =1;
 					for (Filiere f:this.filiereEcole) {
 						if(i==filierechoisie) {
-							for (Prof p:f.profFiliere) {
+							for (Professeur p:f.profFiliere) {
 								this.pwdEcole.remove(p);
 								this.profEcole.remove(p);
 							}
 							this.respoEcole.remove(f.r);
 							this.filiereEcole.remove(f);
 							this.pwdEcole.remove(f.r);
-							for(Class c : this.classEcole) {
+							for(Classe c : this.classEcole) {
 								if(c.filiere.equals(f)) {
 									this.classEcole.remove(c);
 									
@@ -659,7 +663,7 @@ public class Ecole implements Inscription{
 							String cniPers=sc.next();
 							System.out.println("\n  ->Entrez un mot de passe pour ce responsable :");
 							String pwd=sc.next();
-							Respo resp= new Respo(lastnamePers,firstnamePers,cniPers,f,pwd);
+							Responsable resp= new Responsable(lastnamePers,firstnamePers,cniPers,f,pwd);
 							f.r=resp;
 							this.pwdEcole.put(resp,pwd);
 							this. writeRespo();
@@ -690,9 +694,9 @@ public class Ecole implements Inscription{
 			}
 		}
 	}
-	public Respo connectionRespo(String lastnamePers, String firstnamePers,String pwd) {
+	public Responsable connectionRespo(String lastnamePers, String firstnamePers,String pwd) {
 		int a=0;
-		Respo respo =new Respo("","");
+		Responsable responsable =new Responsable("","");
 		while(a==0) {
 			System.out.println("\n  ->Choisissez une filière : ");
 			this.affichefiliereEcole();
@@ -701,7 +705,7 @@ public class Ecole implements Inscription{
 				if(1>filiere || filiere>this.filiereEcole.size()) {
 					throw new InputMismatchException("Ce choix est invalide.")	;
 				}
-				respo =new Respo(lastnamePers,firstnamePers,this.choisirFiliere(filiere),pwd);
+				responsable =new Responsable(lastnamePers,firstnamePers,this.choisirFiliere(filiere),pwd);
 				break;
 
 
@@ -722,13 +726,13 @@ public class Ecole implements Inscription{
 
 
 		}
-		return respo;
+		return responsable;
 	}
 
 	public void addElement(Filiere filiere) {
 		int a=3;
 		while(a==3) {
-			Class cl= filiere.choisirClassFilere();
+			Classe cl= filiere.choisirClassFilere();
 			if(cl.moduleClass.isEmpty()) {
 				System.out.println("Pas de module pour le moment");
 			}
@@ -789,7 +793,7 @@ public class Ecole implements Inscription{
 		}
 	}
 	public void addModule(Filiere filiere) {
-		Class cl= filiere.choisirClassFilere();
+		Classe cl= filiere.choisirClassFilere();
 		System.out.println("\n--Entrez le nom du nouveau module :\n");
 		sc.nextLine();
 		String nomModule=sc.nextLine();
@@ -834,7 +838,7 @@ public class Ecole implements Inscription{
 
 	}
 	public void removeModule(Filiere filiere) {
-		Class cl= filiere.choisirClassFilere();
+		Classe cl= filiere.choisirClassFilere();
 		if(cl.moduleClass.isEmpty()) {
 			System.err.println("Pas de module dans la classe");
 		}
@@ -871,7 +875,7 @@ public class Ecole implements Inscription{
 		}
 	}
 	public void removeElement(Filiere filiere) {
-		Class cl= filiere.choisirClassFilere();
+		Classe cl= filiere.choisirClassFilere();
 		int a=0;
 		while(a==0) {
 			System.out.println("\nChoisissez un module");
@@ -900,8 +904,8 @@ public class Ecole implements Inscription{
 			}
 		}
 	}
-	public boolean profverificationPWD(Prof p) {
-		for (Prof a :this.profEcole) {
+	public boolean profverificationPWD(Professeur p) {
+		for (Professeur a :this.profEcole) {
 			if (a.equals(p)) {
 				if (a.pwd.equals(p.pwd)) {
 
@@ -974,11 +978,11 @@ public class Ecole implements Inscription{
 		this.studEcole = studEcole;
 	}
 
-	public Set<Class> getClassEcole() {
+	public Set<Classe> getClassEcole() {
 		return classEcole;
 	}
 
-	public void setClassEcole(Set<Class> classEcole) {
+	public void setClassEcole(Set<Classe> classEcole) {
 		this.classEcole = classEcole;
 	}
 
@@ -990,12 +994,33 @@ public class Ecole implements Inscription{
 		this.filiereEcole = filiereEcole;
 	}
 
-	public Set<Respo> getRespoEcole() {
+	public Set<Responsable> getRespoEcole() {
 		return respoEcole;
 	}
 
-	public void setRespoEcole(Set<Respo> respoEcole) {
+	public void setRespoEcole(Set<Responsable> respoEcole) {
 		this.respoEcole = respoEcole;
 	}
+	public void statInscriptionSexe() {
+		if(nbrFemme+nbrHomme != 0) {
+			float pg = nbrHomme*100/(nbrFemme+nbrHomme);
+			float pf =nbrFemme*100/(nbrFemme+nbrHomme);
+			System.out.println("Pourcentage des garçons parmi les nouveaux inscrits est : " + pg + "%");
+			System.out.println("Pourcentage des filles parmi les nouveaux inscrits est : " + pf + "%");
+		} else {
+			System.out.println("Pas d'inscription pour le moment.");
+		}
+	}
+	/*public void  statsReussite() {
+		if(nbrPassage+nbrRedoublant != 0) {
+			float tauxP = (nbrPassage*100)/(nbrPassage+nbrRedoublant);
+			float tauxR = (nbrRedoublant*100)/(nbrPassage+nbrRedoublant);
+			System.out.println("Le taux de personnes ayant terminé cette année avec succès est : "+ tauxP + "%");
+			System.out.println("Le taux de personnes qui vont redoubler cette année est : "+ tauxR + "%");
+		}
+		else {
+			System.out.println("Pas de données pour le moment.");
+		}
+	}*/
 }
 

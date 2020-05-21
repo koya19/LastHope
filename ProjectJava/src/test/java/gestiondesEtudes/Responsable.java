@@ -1,27 +1,27 @@
 package gestiondesEtudes;
 
 
-public class Respo extends Personne {
+public class Responsable extends Personne {
 	protected Filiere filière;
 	protected String pwd;
 	
-	public Respo () {
+	public Responsable () {
 		super();
 	}
-public Respo(String lastnamePers, String firstnamePers, String cniPers,Filiere filière,String pwd) {
+public Responsable(String lastnamePers, String firstnamePers, String cniPers,Filiere filière,String pwd) {
 		super(lastnamePers, firstnamePers,cniPers);
 		this.filière=filière;
 		this.pwd=pwd;
 		filière.ecole.respoEcole.add(this);
 		System.out.println("\nVous avez ajouté " +this.lastnamePers+" "+this.firstnamePers+" comme responsable de la filière "+filière.toString() );
 	}
-public Respo(String lastnamePers, String firstnamePers,Filiere filière,String pwd) {
+public Responsable(String lastnamePers, String firstnamePers,Filiere filière,String pwd) {
 	super(lastnamePers, firstnamePers);
 	this.filière=filière;
 	this.pwd=pwd;
 	//filière.ecole.respoEcole.add(this);
 	}
-	public Respo (String a, String b) {
+	public Responsable (String a, String b) {
 		super(a,b);
 
 		
@@ -30,11 +30,11 @@ public Respo(String lastnamePers, String firstnamePers,Filiere filière,String pw
 	public Filiere getFiliere() {
 		return filière;
 	}
-	public boolean equals(Respo respo) {
-		return this.firstnamePers.equals(respo.firstnamePers)&& this.lastnamePers.equals(respo.lastnamePers) && (this.filière.equals(respo.filière));
+	public boolean equals(Responsable responsable) {
+		return this.firstnamePers.equals(responsable.firstnamePers)&& this.lastnamePers.equals(responsable.lastnamePers) && (this.filière.equals(responsable.filière));
 	}
 	 public boolean exist() {
-			for (Respo resp: filière.ecole.respoEcole) {
+			for (Responsable resp: filière.ecole.respoEcole) {
 				if (resp.equals(this)) {
 					return true;	
 				}
@@ -43,20 +43,20 @@ public Respo(String lastnamePers, String firstnamePers,Filiere filière,String pw
 			 return false;
 			
 		}
-	 public Respo choisir(int a) {
+	 public Responsable choisir(int a) {
 		 int i=1;
-		 Respo respo= new Respo();
-		 for (Respo r: filière.ecole.respoEcole) {
+		 Responsable responsable= new Responsable();
+		 for (Responsable r: filière.ecole.respoEcole) {
 			 if (i==a) {
-				 respo=r;
+				 responsable=r;
 				 break;
 			 }
 			 else i++;
 		 }
-		 return respo;
+		 return responsable;
 	 }
 	 public boolean verificationPWD() {
-			for (Respo a :this.filière.ecole.respoEcole) {
+			for (Responsable a :this.filière.ecole.respoEcole) {
 				if (a.equals(this)) {
 					if (a.pwd.equals(this.pwd)) {
 						return true;

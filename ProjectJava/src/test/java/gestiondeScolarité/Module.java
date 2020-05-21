@@ -1,12 +1,12 @@
 package gestiondeScolarité;
-import gestiondesEtudes.Class;
-import gestiondesEtudes.Prof;
+import gestiondesEtudes.Classe;
+import gestiondesEtudes.Professeur;
 import gestiondesEtudes.Student;
 import java.util.*;
 
 public class Module {
 	public String nomModule;
-	public Class cl;
+	public Classe cl;
 	protected int heureModule;
 	protected Set<Element> eleModule=new HashSet<>();
 	public Map<Student,Double> noteModule= new TreeMap<>();
@@ -14,11 +14,11 @@ public class Module {
 	protected Map<Element,Integer> heureElement= new HashMap<>();
 	Scanner sc=new Scanner(System.in);
 	 String Newligne=System.getProperty("line.separator");
-	public Set <Prof> profClass= new HashSet<>();
+	public Set <Professeur> profClass= new HashSet<>();
 	
 	
 	@SuppressWarnings("rawtypes")
-	public Module(String nomModule,Class cl) {
+	public Module(String nomModule,Classe cl) {
 		this.nomModule=nomModule;
 		this.cl=cl;
 		this.cl.moduleClass.add(this);

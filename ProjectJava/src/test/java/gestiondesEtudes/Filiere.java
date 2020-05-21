@@ -4,12 +4,12 @@ import java.util.*;
 public class Filiere implements Comparable<Filiere>{
 
 protected String  nomFilière;
-protected Set <Promo> promoFiliere =new HashSet<>();
-protected Set <Class> classFiliere= new HashSet<>();
+protected Set <Promotion> promoFiliere =new HashSet<>();
+protected Set <Classe> classFiliere= new HashSet<>();
 protected Set <Student> studFiliere= new TreeSet<>();
-public Set <Prof> profFiliere =new HashSet<>();
+public Set <Professeur> profFiliere =new HashSet<>();
 protected Ecole ecole;
-protected Respo r= new Respo ();
+protected Responsable r= new Responsable ();
 Scanner sc=new Scanner(System.in);
 	
 	public Filiere() {
@@ -29,14 +29,14 @@ Scanner sc=new Scanner(System.in);
 		return  nomFilière ;
 	}
 //-------------------------------------------------------------------------------
-	public void removePromoFiliere (Promo p) {
+	public void removePromoFiliere (Promotion p) {
 		 promoFiliere.remove(p);
 	 }
-	public void respoFiliere (Respo a) {
+	public void respoFiliere (Responsable a) {
 		r=a;
 		System.out.println("\nVous avez désigné "+ r +" comme responsable de filière "+this.toString());
 	}
-	public void addpromoFiliere(Promo p) {
+	public void addpromoFiliere(Promotion p) {
 	
 		promoFiliere.add(p);
 	}
@@ -78,8 +78,8 @@ Scanner sc=new Scanner(System.in);
 		}
 		
 	}
-	public Class choisirClassFilere() {
-		Class cl = new Class ();
+	public Classe choisirClassFilere() {
+		Classe cl = new Classe ();
 		int a=0;
 		while (a==0) {
 		System.out.println("\nChoisissez une classe :");
@@ -91,7 +91,7 @@ Scanner sc=new Scanner(System.in);
 				throw new InputMismatchException("Ce choix est invalide.")	;
 			}
 			int i=1;
-			for (Class c:this.classFiliere ) {
+			for (Classe c:this.classFiliere ) {
 				if (i==classchoisie) {
 					cl=c;
 					break;
@@ -136,19 +136,19 @@ Scanner sc=new Scanner(System.in);
 		this.nomFilière = nomFilière;
 	}
 
-	public Set<Promo> getPromoFiliere() {
+	public Set<Promotion> getPromoFiliere() {
 		return promoFiliere;
 	}
 
-	public void setPromoFiliere(Set<Promo> promoFiliere) {
+	public void setPromoFiliere(Set<Promotion> promoFiliere) {
 		this.promoFiliere = promoFiliere;
 	}
 
-	public Set<Class> getClassFiliere() {
+	public Set<Classe> getClassFiliere() {
 		return classFiliere;
 	}
 
-	public void setClassFiliere(Set<Class> classFiliere) {
+	public void setClassFiliere(Set<Classe> classFiliere) {
 		this.classFiliere = classFiliere;
 	}
 
@@ -160,11 +160,11 @@ Scanner sc=new Scanner(System.in);
 		this.studFiliere = studFiliere;
 	}
 
-	public Set<Prof> getProfFiliere() {
+	public Set<Professeur> getProfFiliere() {
 		return profFiliere;
 	}
 
-	public void setProfFiliere(Set<Prof> profFiliere) {
+	public void setProfFiliere(Set<Professeur> profFiliere) {
 		this.profFiliere = profFiliere;
 	}
 
@@ -176,11 +176,11 @@ Scanner sc=new Scanner(System.in);
 		this.ecole = ecole;
 	}
 
-	public Respo getR() {
+	public Responsable getR() {
 		return r;
 	}
 
-	public void setR(Respo r) {
+	public void setR(Responsable r) {
 		this.r = r;
 	}
 
@@ -188,8 +188,8 @@ Scanner sc=new Scanner(System.in);
 	@SuppressWarnings("unused")
 	public void nbrProfParClass() {
 		int i = 0;
-		for (Class c : classFiliere) {
-			for (Prof p : c.profClass) {
+		for (Classe c : classFiliere) {
+			for (Professeur p : c.profClass) {
 				i++;
 			}
 		}
@@ -201,7 +201,7 @@ Scanner sc=new Scanner(System.in);
 	@SuppressWarnings("unused")
 	public void nbrEtudParClass() {
 		int i = 0;
-		for (Class c : classFiliere) {
+		for (Classe c : classFiliere) {
 			for (Student s : c.stud) {
 				i++;
 			}

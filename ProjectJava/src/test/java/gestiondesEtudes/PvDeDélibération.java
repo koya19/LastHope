@@ -1,9 +1,9 @@
 package gestiondesEtudes;
 
 public class PvDeDélibération {
-	protected Class p;
+	protected Classe p;
 	
-	public PvDeDélibération(Class p) {
+	public PvDeDélibération(Classe p) {
 		this.p = p;
 	}
 	

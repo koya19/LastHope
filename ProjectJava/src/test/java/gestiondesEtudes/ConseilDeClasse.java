@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ConseilDeClasse {
-	protected Set<Respo> equipe;
-	protected Respo chef;
+	protected Set<Responsable> equipe;
+	protected Responsable chef;
 	protected Student e;
 	
 	protected static int nbrPassage = 0;
 	protected static int nbrRedoublant = 0;
 	
-	public ConseilDeClasse(Respo chef, Student e) {
+	public ConseilDeClasse(Responsable chef, Student e) {
 		this.equipe = new HashSet<>();
 		this.chef = chef;
 		this.e = e;
@@ -35,7 +35,7 @@ public class ConseilDeClasse {
 		}
 	}
 	
-	public void statsReussite() {
+	public static void statsReussite() {
 		if(nbrPassage+nbrRedoublant != 0) {
 			float tauxP = (nbrPassage*100)/(nbrPassage+nbrRedoublant);
 			float tauxR = (nbrRedoublant*100)/(nbrPassage+nbrRedoublant);

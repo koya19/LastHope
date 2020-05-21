@@ -11,7 +11,7 @@ public class InscriptionPédagogique {
 		protected int filierechoisie;
 		private Student et;
 		protected Ecole ec;
-		protected Class c;
+		protected Classe c;
 		protected Filiere f;
 		
 		Scanner sc = new Scanner(System.in);
